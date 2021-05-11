@@ -1,0 +1,43 @@
+{
+	"sources" : 
+	[
+		{
+			"file" : "/home/zio-saba/Scrivania/symcc/build/CMakeFiles/SymRuntime"
+		},
+		{
+			"file" : "/home/zio-saba/Scrivania/symcc/build/CMakeFiles/SymRuntime.rule"
+		},
+		{
+			"file" : "/home/zio-saba/Scrivania/symcc/build/CMakeFiles/SymRuntime-complete.rule"
+		},
+		{
+			"file" : "/home/zio-saba/Scrivania/symcc/build/SymRuntime-prefix/src/SymRuntime-stamp/SymRuntime-install.rule"
+		},
+		{
+			"file" : "/home/zio-saba/Scrivania/symcc/build/SymRuntime-prefix/src/SymRuntime-stamp/SymRuntime-mkdir.rule"
+		},
+		{
+			"file" : "/home/zio-saba/Scrivania/symcc/build/SymRuntime-prefix/src/SymRuntime-stamp/SymRuntime-download.rule"
+		},
+		{
+			"file" : "/home/zio-saba/Scrivania/symcc/build/SymRuntime-prefix/src/SymRuntime-stamp/SymRuntime-update.rule"
+		},
+		{
+			"file" : "/home/zio-saba/Scrivania/symcc/build/SymRuntime-prefix/src/SymRuntime-stamp/SymRuntime-patch.rule"
+		},
+		{
+			"file" : "/home/zio-saba/Scrivania/symcc/build/SymRuntime-prefix/src/SymRuntime-stamp/SymRuntime-configure.rule"
+		},
+		{
+			"file" : "/home/zio-saba/Scrivania/symcc/build/SymRuntime-prefix/src/SymRuntime-stamp/SymRuntime-build.rule"
+		}
+	],
+	"target" : 
+	{
+		"labels" : 
+		[
+			"SymRuntime"
+		],
+		"name" : "SymRuntime"
+	}
+}

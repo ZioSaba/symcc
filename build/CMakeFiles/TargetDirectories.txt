@@ -1,0 +1,8 @@
+/home/zio-saba/Scrivania/symcc/build/CMakeFiles/rebuild_cache.dir
+/home/zio-saba/Scrivania/symcc/build/CMakeFiles/edit_cache.dir
+/home/zio-saba/Scrivania/symcc/build/CMakeFiles/Symbolize.dir
+/home/zio-saba/Scrivania/symcc/build/CMakeFiles/intrinsics_gen.dir
+/home/zio-saba/Scrivania/symcc/build/CMakeFiles/SymRuntime.dir
+/home/zio-saba/Scrivania/symcc/build/test/CMakeFiles/rebuild_cache.dir
+/home/zio-saba/Scrivania/symcc/build/test/CMakeFiles/edit_cache.dir
+/home/zio-saba/Scrivania/symcc/build/test/CMakeFiles/check.dir

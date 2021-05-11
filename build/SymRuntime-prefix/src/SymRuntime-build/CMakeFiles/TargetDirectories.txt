@@ -1,0 +1,6 @@
+/home/zio-saba/Scrivania/symcc/build/SymRuntime-prefix/src/SymRuntime-build/CMakeFiles/rebuild_cache.dir
+/home/zio-saba/Scrivania/symcc/build/SymRuntime-prefix/src/SymRuntime-build/CMakeFiles/edit_cache.dir
+/home/zio-saba/Scrivania/symcc/build/SymRuntime-prefix/src/SymRuntime-build/qsym_backend/CMakeFiles/rebuild_cache.dir
+/home/zio-saba/Scrivania/symcc/build/SymRuntime-prefix/src/SymRuntime-build/qsym_backend/CMakeFiles/edit_cache.dir
+/home/zio-saba/Scrivania/symcc/build/SymRuntime-prefix/src/SymRuntime-build/qsym_backend/CMakeFiles/SymRuntime.dir
+/home/zio-saba/Scrivania/symcc/build/SymRuntime-prefix/src/SymRuntime-build/qsym_backend/CMakeFiles/intrinsics_gen.dir

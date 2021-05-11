@@ -1,0 +1,13 @@
+# Target labels
+ SymRuntime
+# Source files and their labels
+/home/zio-saba/Scrivania/symcc/build/CMakeFiles/SymRuntime
+/home/zio-saba/Scrivania/symcc/build/CMakeFiles/SymRuntime.rule
+/home/zio-saba/Scrivania/symcc/build/CMakeFiles/SymRuntime-complete.rule
+/home/zio-saba/Scrivania/symcc/build/SymRuntime-prefix/src/SymRuntime-stamp/SymRuntime-install.rule
+/home/zio-saba/Scrivania/symcc/build/SymRuntime-prefix/src/SymRuntime-stamp/SymRuntime-mkdir.rule
+/home/zio-saba/Scrivania/symcc/build/SymRuntime-prefix/src/SymRuntime-stamp/SymRuntime-download.rule
+/home/zio-saba/Scrivania/symcc/build/SymRuntime-prefix/src/SymRuntime-stamp/SymRuntime-update.rule
+/home/zio-saba/Scrivania/symcc/build/SymRuntime-prefix/src/SymRuntime-stamp/SymRuntime-patch.rule
+/home/zio-saba/Scrivania/symcc/build/SymRuntime-prefix/src/SymRuntime-stamp/SymRuntime-configure.rule
+/home/zio-saba/Scrivania/symcc/build/SymRuntime-prefix/src/SymRuntime-stamp/SymRuntime-build.rule
