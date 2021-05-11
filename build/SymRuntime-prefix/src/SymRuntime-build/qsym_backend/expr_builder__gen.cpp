@@ -685,6 +685,7 @@ ExprRef SymbolicExprBuilder::createAdd(ExprRef l, ExprRef r) {
   if (ExprRef e = simplifyExclusiveExpr(l, r))
     return e;
 
+  //printf("SONO IN EXPR_BUILDER.cPP\n")
   if (NonConstantExprRef nce_r = castAs<NonConstantExpr>(r)) {
     if (ConstantExprRef ce_l = castAs<ConstantExpr>(l))
       return createAdd(ce_l, nce_r);
