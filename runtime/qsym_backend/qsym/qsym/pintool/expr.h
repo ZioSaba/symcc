@@ -74,7 +74,12 @@ enum Kind {
   // Virtual operation
   Rol,
   Ror,
-  Invalid
+  Invalid,
+
+
+  /**** CODICE MIO ****/
+  FloatingPointAdd
+  /********************/
 };
 
 Kind swapKind(Kind kind);
@@ -445,6 +450,37 @@ protected:
   ExprRef evaluateImpl() override;
 };
 
+/**** CODICE MIO ****/
+
+class Integer_Operations : public BinaryExpr {
+  using BinaryExpr::BinaryExpr;
+  // funzioni di conversione
+};
+
+class Floating_Point_Operations : public BinaryExpr {
+  using BinaryExpr::BinaryExpr;
+  // funzioni di conversione
+};
+
+class LinearBinaryExpr_Integer : public Integer_Operations {
+using Integer_Operations::Integer_Operations;
+};
+
+class LinearBinaryExpr_FP : public Floating_Point_Operations {
+using Floating_Point_Operations::Floating_Point_Operations;
+};
+
+class NonLinearBinaryExpr_Integer : public Integer_Operations {
+using Integer_Operations::Integer_Operations;
+};
+
+class NonLinearBinaryExpr_FP : public Floating_Point_Operations {
+using Floating_Point_Operations::Floating_Point_Operations;
+};
+
+/********************/
+
+
 class LinearBinaryExpr : public BinaryExpr {
 using BinaryExpr::BinaryExpr;
 };
@@ -452,6 +488,7 @@ using BinaryExpr::BinaryExpr;
 class NonLinearBinaryExpr : public BinaryExpr {
 using BinaryExpr::BinaryExpr;
 };
+
 
 class CompareExpr : public LinearBinaryExpr {
 public:
@@ -797,10 +834,15 @@ protected:
   }
 };
 
-class AddExpr : public LinearBinaryExpr {
+/**** CODICE MIO ****/
+// Aggiunto "*_Integer" alla classe estesa da AddExpr
+// Aggiunto "*_Integer" al costruttore della classe
+/********************/
+
+class AddExpr : public LinearBinaryExpr_Integer {
 public:
   AddExpr(ExprRef l, ExprRef h)
-    : LinearBinaryExpr(Add, l, h) {}
+    : LinearBinaryExpr_Integer(Add, l, h) {}
 
   static bool classOf(const Expr& e) { return e.kind() == Add; }
   void print(ostream& os, UINT depth) const override;
@@ -815,10 +857,34 @@ protected:
   }
 };
 
-class SubExpr : public LinearBinaryExpr {
+
+/**** CODICE MIO ****/
+class FloatingPointAddExpr : public LinearBinaryExpr_FP {
+  public:
+  FloatingPointAddExpr(ExprRef l, ExprRef h)
+  : LinearBinaryExpr_FP(FloatingPointAdd, l, h) {}
+  
+  static bool classOf(const Expr& e) { return e.kind() == Add; }
+  void print(ostream& os, UINT depth) const override;
+
+protected:
+  std::string getName() const override {
+    return "FloatingPointAdd";
+  }
+
+  // to z3 (???)
+};
+/********************/
+
+
+/**** CODICE MIO ****/
+// Aggiunto "*_Integer" alla classe estesa da SubExpr
+// Aggiunto "*_Integer" al costruttore della classe
+/********************/
+class SubExpr : public LinearBinaryExpr_Integer {
 public:
   SubExpr(ExprRef l, ExprRef h)
-    : LinearBinaryExpr(Sub, l, h) {}
+    : LinearBinaryExpr_Integer(Sub, l, h) {}
 
   static bool classOf(const Expr& e) { return e.kind() == Sub; }
 
@@ -834,10 +900,15 @@ protected:
   void print(ostream& os=std::cerr, UINT depth=0) const override;
 };
 
-class MulExpr : public NonLinearBinaryExpr {
+
+/**** CODICE MIO ****/
+// Aggiunto "*_Integer" alla classe estesa da MulExpr
+// Aggiunto "*_Integer" al costruttore della classe
+/********************/
+class MulExpr : public NonLinearBinaryExpr_Integer {
 public:
   MulExpr(ExprRef l, ExprRef h)
-    : NonLinearBinaryExpr(Mul, l, h) {}
+    : NonLinearBinaryExpr_Integer(Mul, l, h) {}
 
   static bool classOf(const Expr& e) { return e.kind() == Mul; }
   void print(ostream& os, UINT depth) const override;
@@ -852,10 +923,15 @@ protected:
   }
 };
 
-class UDivExpr : public NonLinearBinaryExpr {
+
+/**** CODICE MIO ****/
+// Aggiunto "*_Integer" alla classe estesa da UDivExpr
+// Aggiunto "*_Integer" al costruttore della classe
+/********************/
+class UDivExpr : public NonLinearBinaryExpr_Integer {
 public:
   UDivExpr(ExprRef l, ExprRef h)
-    : NonLinearBinaryExpr(UDiv, l, h) {}
+    : NonLinearBinaryExpr_Integer(UDiv, l, h) {}
 
   static bool classOf(const Expr& e) { return e.kind() == UDiv; }
   void print(ostream& os, UINT depth) const override;
@@ -871,10 +947,15 @@ protected:
   }
 };
 
-class SDivExpr : public NonLinearBinaryExpr {
+
+/**** CODICE MIO ****/
+// Aggiunto "*_Integer" alla classe estesa da SDivExpr
+// Aggiunto "*_Integer" al costruttore della classe
+/********************/
+class SDivExpr : public NonLinearBinaryExpr_Integer {
 public:
   SDivExpr(ExprRef l, ExprRef h)
-    : NonLinearBinaryExpr(SDiv, l, h) {}
+    : NonLinearBinaryExpr_Integer(SDiv, l, h) {}
 
   static bool classOf(const Expr& e) { return e.kind() == SDiv; }
   void print(ostream& os, UINT depth) const override;
