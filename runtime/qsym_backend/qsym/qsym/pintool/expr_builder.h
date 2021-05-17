@@ -22,11 +22,7 @@ public:
   virtual ExprRef createZExt(ExprRef e, UINT32 bits);
   virtual ExprRef createSExt(ExprRef e, UINT32 bits);
   virtual ExprRef createAdd(ExprRef l, ExprRef r);
-
-  /**** CODICE MIO ****/
   virtual ExprRef createFloatingPointAdd(ExprRef l, ExprRef r);
-  /********************/
-
   virtual ExprRef createSub(ExprRef l, ExprRef r);
   virtual ExprRef createMul(ExprRef l, ExprRef r);
   virtual ExprRef createUDiv(ExprRef l, ExprRef r);

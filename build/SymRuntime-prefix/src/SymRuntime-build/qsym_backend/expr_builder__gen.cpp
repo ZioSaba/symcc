@@ -1186,6 +1186,11 @@ ExprRef ExprBuilder::createAdd(ExprRef l, ExprRef r)
 	return next_->createAdd(l, r);
 }
 
+ExprRef ExprBuilder::createFloatingPointAdd(ExprRef l, ExprRef r)
+{
+	return next_->createFloatingPointAdd(l, r);
+}
+
 ExprRef ExprBuilder::createSub(ExprRef l, ExprRef r)
 {
 	return next_->createSub(l, r);
@@ -1379,6 +1384,8 @@ ExprRef ExprBuilder::createBinaryExpr(Kind kind, ExprRef l, ExprRef r) {
 			return createLOr(l, r);
 		case LAnd:
 			return createLAnd(l, r);
+		case FloatingPointAdd:
+			return createFloatingPointAdd(l, r);
 		default:
 			LOG_FATAL("Non-binary expr: " + std::to_string(kind) + "\n");
 			return NULL;

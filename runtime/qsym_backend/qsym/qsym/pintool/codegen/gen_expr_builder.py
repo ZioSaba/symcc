@@ -19,7 +19,6 @@ def read_def(name):
 
   for l in f:
     # remove the override keyword
-    #print(l)
     l = l.replace(" override", "")
     if "{END:%s}" % name in l:
       break
@@ -33,7 +32,6 @@ def read_def(name):
 if __name__ == '__main__':
     code = []
     funcs = read_def("FUNC")
-
     # generate ExprBuilder::create*
     for func, name, args_name in funcs:
         code.append(
@@ -43,7 +41,7 @@ if __name__ == '__main__':
 }}\n\n""".format(func, name, ', '.join(args_name)))
 
     #CODICE MIO
-    #Aggiunto FloatingPointAdd in BINAYR_KIND
+    #Aggiunto FloatingPointAdd in BINARY_KIND
 
     BINARY_KIND = [
     "Add", "Sub", "Mul", "UDiv", "SDiv", "URem", "SRem", "And", "Or", "Xor",
@@ -156,9 +154,6 @@ if __name__ == '__main__':
       "Shl": (RET_CONST, OP_BINARY, "<<"),
       "LShr": (RET_CONST, OP_FUNC,),
       "AShr": (RET_CONST, OP_FUNC,),
-
-      #CODICE MIO
-      "FloatingPointAdd": (RET_CONST, OP_BINARY, "+"),
 
       # bool
       "Ult": (RET_BOOL, OP_FUNC,),
