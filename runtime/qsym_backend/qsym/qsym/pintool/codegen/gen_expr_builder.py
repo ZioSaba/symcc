@@ -19,6 +19,7 @@ def read_def(name):
 
   for l in f:
     # remove the override keyword
+    #print(l)
     l = l.replace(" override", "")
     if "{END:%s}" % name in l:
       break
@@ -41,10 +42,13 @@ if __name__ == '__main__':
 \treturn next_->{1}({2});
 }}\n\n""".format(func, name, ', '.join(args_name)))
 
+    #CODICE MIO
+    #Aggiunto FloatingPointAdd in BINAYR_KIND
+
     BINARY_KIND = [
     "Add", "Sub", "Mul", "UDiv", "SDiv", "URem", "SRem", "And", "Or", "Xor",
     "Shl", "LShr", "AShr", "Equal", "Distinct", "Ult", "Ule", "Ugt", "Uge",
-    "Slt", "Sle", "Sgt", "Sge", "LOr", "LAnd"]
+    "Slt", "Sle", "Sgt", "Sge", "LOr", "LAnd", "FloatingPointAdd"]
 
     # generate createBinary
     code.append(
@@ -152,6 +156,9 @@ if __name__ == '__main__':
       "Shl": (RET_CONST, OP_BINARY, "<<"),
       "LShr": (RET_CONST, OP_FUNC,),
       "AShr": (RET_CONST, OP_FUNC,),
+
+      #CODICE MIO
+      "FloatingPointAdd": (RET_CONST, OP_BINARY, "+"),
 
       # bool
       "Ult": (RET_BOOL, OP_FUNC,),

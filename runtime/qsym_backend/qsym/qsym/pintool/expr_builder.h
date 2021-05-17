@@ -88,10 +88,6 @@ public:
   ExprRef createZExt(ExprRef e, UINT32 bits) override;
   ExprRef createSExt(ExprRef e, UINT32 bits) override;
   ExprRef createAdd(ExprRef l, ExprRef r) override;
-
-  /**** CODICE MIO ****/
-  ExprRef createFloatingPointAdd(ExprRef l, ExprRef r) override;
-  /********************/
   ExprRef createSub(ExprRef l, ExprRef r) override;
   ExprRef createMul(ExprRef l, ExprRef r) override;
   ExprRef createUDiv(ExprRef l, ExprRef r) override;
@@ -258,12 +254,7 @@ public:
 class SymbolicExprBuilder : public ExprBuilder {
 public:
   ExprRef createConcat(ExprRef l, ExprRef r) override;
-  ExprRef createAdd(ExprRef l, ExprRef r) override;
-
-  /**** CODICE MIO ****/
-  ExprRef createFloatingPointAdd(ExprRef l, ExprRef r) override;
-  /********************/
-  
+  ExprRef createAdd(ExprRef l, ExprRef r) override; 
   ExprRef createSub(ExprRef l, ExprRef r) override;
   ExprRef createMul(ExprRef l, ExprRef r) override;
   ExprRef createSDiv(ExprRef l, ExprRef r) override;
