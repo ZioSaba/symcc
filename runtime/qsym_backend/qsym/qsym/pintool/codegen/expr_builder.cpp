@@ -685,7 +685,6 @@ ExprRef SymbolicExprBuilder::createAdd(ExprRef l, ExprRef r) {
   if (ExprRef e = simplifyExclusiveExpr(l, r))
     return e;
 
-  //printf("SONO IN EXPR_BUILDER.cPP\n")
   if (NonConstantExprRef nce_r = castAs<NonConstantExpr>(r)) {
     if (ConstantExprRef ce_l = castAs<ConstantExpr>(l))
       return createAdd(ce_l, nce_r);
@@ -698,6 +697,12 @@ ExprRef SymbolicExprBuilder::createAdd(ExprRef l, ExprRef r) {
   else
     return ExprBuilder::createAdd(l, r);
 }
+
+/**** CODICE MIO ****/
+ExprRef SymbolicExprBuilder::createFloatingPointAdd(ExprRef l, ExprRef r) {
+  printf("QUALCOSA\n");
+}
+/********************/
 
 ExprRef SymbolicExprBuilder::createAdd(ConstantExprRef l, NonConstantExprRef r) {
   switch (r->kind()) {

@@ -250,7 +250,8 @@ public:
 class SymbolicExprBuilder : public ExprBuilder {
 public:
   ExprRef createConcat(ExprRef l, ExprRef r) override;
-  ExprRef createAdd(ExprRef l, ExprRef r) override; 
+  ExprRef createAdd(ExprRef l, ExprRef r) override;
+  ExprRef createFloatingPointAdd(ExprRef l, ExprRef r) override;
   ExprRef createSub(ExprRef l, ExprRef r) override;
   ExprRef createMul(ExprRef l, ExprRef r) override;
   ExprRef createSDiv(ExprRef l, ExprRef r) override;
@@ -274,6 +275,8 @@ public:
 private:
   ExprRef createAdd(ConstantExprRef l, NonConstantExprRef r);
   ExprRef createAdd(NonConstantExprRef l, NonConstantExprRef r);
+  ExprRef createFloatingPointAdd(ConstantExprRef l, NonConstantExprRef r);
+  ExprRef createFloatingPointAdd(NonConstantExprRef l, NonConstantExprRef r);
   ExprRef createSub(ConstantExprRef l, NonConstantExprRef r);
   ExprRef createSub(NonConstantExprRef l, NonConstantExprRef r);
   ExprRef createMul(ConstantExprRef l, NonConstantExprRef r);
