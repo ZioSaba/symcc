@@ -700,7 +700,15 @@ ExprRef SymbolicExprBuilder::createAdd(ExprRef l, ExprRef r) {
 
 /**** CODICE MIO ****/
 ExprRef SymbolicExprBuilder::createFloatingPointAdd(ExprRef l, ExprRef r) {
-  printf("QUALCOSA\n");
+  printf("DOPPIA EXPRREF\n");
+}
+
+ExprRef SymbolicExprBuilder::createFloatingPointAdd(ConstantExprRef l, NonConstantExprRef r) {
+  printf("CONSTANT E NON CONSTANT\n");
+}
+
+ExprRef SymbolicExprBuilder::createFloatingPointAdd(NonConstantExprRef l, NonConstantExprRef r) {
+  printf("DOPPIA NONCOSTANT\n");
 }
 /********************/
 
