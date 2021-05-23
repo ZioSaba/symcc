@@ -93,6 +93,11 @@ bool isNegatableKind(Kind kind);
 
 DECLARE_EXPR(Expr);
 DECLARE_EXPR(ConstantExpr);
+
+/**** CODICE MIO ****/
+DECLARE_EXPR(FloatingPointExpr)
+/********************/
+
 DECLARE_EXPR(NonConstantExpr);
 DECLARE_EXPR(BoolExpr);
 
@@ -354,14 +359,34 @@ struct ExprRefEqual {
   }
 };
 
-class ConstantExpr : public Expr {
+
+/**** CODICE MIO ****/
+
+// Definizione della classe che rappresenterà tutte le espressioni intere 
+class IntegerExpr : public Expr {
+  using Expr::Expr;
+  // funzioni di conversione
+};
+
+// Definizione della classe che rappresenterà tutte le espressioni in virgola mobile
+class FloatingPointExpr : public Expr {
+  using Expr::Expr;
+  // funzioni di conversione
+};
+
+/********************/
+
+
+// Modificata la classe che estende da Expr a IntegerExpr
+// Modificati i costruttori superiori da Expr a IntegerExpr
+class ConstantExpr : public IntegerExpr {
 public:
   ConstantExpr(ADDRINT value, UINT32 bits) :
-    Expr(Constant, bits),
+    IntegerExpr(Constant, bits),
     value_(bits, value) {}
 
   ConstantExpr(const llvm::APInt& value, UINT32 bits) :
-    Expr(Constant, bits),
+    IntegerExpr(Constant, bits),
     value_(value) {}
 
   inline llvm::APInt value() const { return value_; }
@@ -377,7 +402,7 @@ public:
 
 protected:
   std::string getName() const override {
-    return "Constant";
+    return "Integer Constant";
   }
 
   bool printAux(ostream& os) const override {
@@ -408,12 +433,24 @@ protected:
   llvm::APInt value_;
 };
 
+/**** CODICE MIO ****/
+class FPCostantExpr : public FloatingPointExpr{
+  // cosa ci va qui?
+};
+/********************/
 
-class NonConstantExpr : public Expr {
+// Modificata la classe che estende da Expr a IntegerExpr
+class NonConstantExpr : public IntegerExpr {
   public:
-    using Expr::Expr;
+    using IntegerExpr::IntegerExpr;
     static bool classOf(const Expr& e) { return !ConstantExpr::classOf(e); }
 };
+
+/**** CODICE MIO ****/
+class FPNonConstantExpr : public FloatingPointExpr{
+  // cosa ci va qui?
+};
+/********************/
 
 class UnaryExpr : public NonConstantExpr {
 public:
@@ -429,6 +466,12 @@ public:
 protected:
   ExprRef evaluateImpl() override;
 };
+
+/**** CODICE MIO ****/
+class FPUnaryExpr : public FPNonConstantExpr {
+  // cosa ci va qui?
+};
+/********************/
 
 class BinaryExpr : public NonConstantExpr {
 public:
@@ -451,44 +494,30 @@ protected:
 };
 
 /**** CODICE MIO ****/
-
-class Integer_Operations : public BinaryExpr {
-  using BinaryExpr::BinaryExpr;
-  // funzioni di conversione
+class FPBinaryExpr : public FPNonConstantExpr {
+  // cosa ci va qui?
 };
-
-class Floating_Point_Operations : public BinaryExpr {
-  using BinaryExpr::BinaryExpr;
-  // funzioni di conversione
-};
-
-class LinearBinaryExpr_Integer : public Integer_Operations {
-using Integer_Operations::Integer_Operations;
-};
-
-class LinearBinaryExpr_FP : public Floating_Point_Operations {
-using Floating_Point_Operations::Floating_Point_Operations;
-};
-
-class NonLinearBinaryExpr_Integer : public Integer_Operations {
-using Integer_Operations::Integer_Operations;
-};
-
-class NonLinearBinaryExpr_FP : public Floating_Point_Operations {
-using Floating_Point_Operations::Floating_Point_Operations;
-};
-
 /********************/
-
 
 class LinearBinaryExpr : public BinaryExpr {
 using BinaryExpr::BinaryExpr;
 };
 
+/**** CODICE MIO ****/
+class FPLinearBinaryExpr : public FPBinaryExpr{
+using FPBinaryExpr::FPBinaryExpr;
+};
+/********************/
+
 class NonLinearBinaryExpr : public BinaryExpr {
 using BinaryExpr::BinaryExpr;
 };
 
+/**** CODICE MIO ****/
+class FPNonLinearBinaryExpr : public FPBinaryExpr{
+using FPBinaryExpr::FPBinaryExpr;
+};
+/********************/
 
 class CompareExpr : public LinearBinaryExpr {
 public:
@@ -535,7 +564,6 @@ protected:
   ExprRef evaluateImpl() override;
   bool value_;
 };
-
 
 class ReadExpr : public NonConstantExpr {
 public:
@@ -834,15 +862,10 @@ protected:
   }
 };
 
-/**** CODICE MIO ****/
-// Aggiunto "*_Integer" alla classe estesa da AddExpr
-// Aggiunto "*_Integer" al costruttore della classe
-/********************/
-
-class AddExpr : public LinearBinaryExpr_Integer {
+class AddExpr : public LinearBinaryExpr {
 public:
   AddExpr(ExprRef l, ExprRef h)
-    : LinearBinaryExpr_Integer(Add, l, h) {}
+    : LinearBinaryExpr(Add, l, h) {}
 
   static bool classOf(const Expr& e) { return e.kind() == Add; }
   void print(ostream& os, UINT depth) const override;
@@ -859,32 +882,16 @@ protected:
 
 
 /**** CODICE MIO ****/
-class FloatingPointAddExpr : public LinearBinaryExpr_FP {
-  public:
-  FloatingPointAddExpr(ExprRef l, ExprRef h)
-  : LinearBinaryExpr_FP(FloatingPointAdd, l, h) {}
-  
-  static bool classOf(const Expr& e) { return e.kind() == Add; }
-  void print(ostream& os, UINT depth) const override;
-
-protected:
-  std::string getName() const override {
-    return "FloatingPointAdd";
-  }
-
-  // to z3 (???)
+class FloatingPointAddExpr : public FPLinearBinaryExpr {
+  // cosa ci va qui?
 };
 /********************/
 
 
-/**** CODICE MIO ****/
-// Aggiunto "*_Integer" alla classe estesa da SubExpr
-// Aggiunto "*_Integer" al costruttore della classe
-/********************/
-class SubExpr : public LinearBinaryExpr_Integer {
+class SubExpr : public LinearBinaryExpr {
 public:
   SubExpr(ExprRef l, ExprRef h)
-    : LinearBinaryExpr_Integer(Sub, l, h) {}
+    : LinearBinaryExpr(Sub, l, h) {}
 
   static bool classOf(const Expr& e) { return e.kind() == Sub; }
 
@@ -900,15 +907,10 @@ protected:
   void print(ostream& os=std::cerr, UINT depth=0) const override;
 };
 
-
-/**** CODICE MIO ****/
-// Aggiunto "*_Integer" alla classe estesa da MulExpr
-// Aggiunto "*_Integer" al costruttore della classe
-/********************/
-class MulExpr : public NonLinearBinaryExpr_Integer {
+class MulExpr : public NonLinearBinaryExpr {
 public:
   MulExpr(ExprRef l, ExprRef h)
-    : NonLinearBinaryExpr_Integer(Mul, l, h) {}
+    : NonLinearBinaryExpr(Mul, l, h) {}
 
   static bool classOf(const Expr& e) { return e.kind() == Mul; }
   void print(ostream& os, UINT depth) const override;
@@ -923,15 +925,10 @@ protected:
   }
 };
 
-
-/**** CODICE MIO ****/
-// Aggiunto "*_Integer" alla classe estesa da UDivExpr
-// Aggiunto "*_Integer" al costruttore della classe
-/********************/
-class UDivExpr : public NonLinearBinaryExpr_Integer {
+class UDivExpr : public NonLinearBinaryExpr {
 public:
   UDivExpr(ExprRef l, ExprRef h)
-    : NonLinearBinaryExpr_Integer(UDiv, l, h) {}
+    : NonLinearBinaryExpr(UDiv, l, h) {}
 
   static bool classOf(const Expr& e) { return e.kind() == UDiv; }
   void print(ostream& os, UINT depth) const override;
@@ -947,15 +944,10 @@ protected:
   }
 };
 
-
-/**** CODICE MIO ****/
-// Aggiunto "*_Integer" alla classe estesa da SDivExpr
-// Aggiunto "*_Integer" al costruttore della classe
-/********************/
-class SDivExpr : public NonLinearBinaryExpr_Integer {
+class SDivExpr : public NonLinearBinaryExpr {
 public:
   SDivExpr(ExprRef l, ExprRef h)
-    : NonLinearBinaryExpr_Integer(SDiv, l, h) {}
+    : NonLinearBinaryExpr(SDiv, l, h) {}
 
   static bool classOf(const Expr& e) { return e.kind() == SDiv; }
   void print(ostream& os, UINT depth) const override;
