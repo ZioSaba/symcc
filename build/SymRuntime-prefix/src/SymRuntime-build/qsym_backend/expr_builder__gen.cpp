@@ -699,16 +699,19 @@ ExprRef SymbolicExprBuilder::createAdd(ExprRef l, ExprRef r) {
 }
 
 /**** CODICE MIO ****/
-ExprRef SymbolicExprBuilder::createFloatingPointAdd(ExprRef l, ExprRef r) {
+ExprRef SymbolicExprBuilder::createAddss(ExprRef l, ExprRef r) {
   printf("DOPPIA EXPRREF\n");
+  return ExprBuilder::createAddss(l, r);
 }
 
-ExprRef SymbolicExprBuilder::createFloatingPointAdd(ConstantExprRef l, NonConstantExprRef r) {
+ExprRef SymbolicExprBuilder::createAddss(ConstantExprRef l, NonConstantExprRef r) {
   printf("CONSTANT E NON CONSTANT\n");
+  return ExprBuilder::createAddss(l, r);
 }
 
-ExprRef SymbolicExprBuilder::createFloatingPointAdd(NonConstantExprRef l, NonConstantExprRef r) {
+ExprRef SymbolicExprBuilder::createAddss(NonConstantExprRef l, NonConstantExprRef r) {
   printf("DOPPIA NONCOSTANT\n");
+  return ExprBuilder::createAddss(l, r);
 }
 /********************/
 
@@ -1199,9 +1202,9 @@ ExprRef ExprBuilder::createAdd(ExprRef l, ExprRef r)
 	return next_->createAdd(l, r);
 }
 
-ExprRef ExprBuilder::createFloatingPointAdd(ExprRef l, ExprRef r)
+ExprRef ExprBuilder::createAddss(ExprRef l, ExprRef r)
 {
-	return next_->createFloatingPointAdd(l, r);
+	return next_->createAddss(l, r);
 }
 
 ExprRef ExprBuilder::createSub(ExprRef l, ExprRef r)
@@ -1397,8 +1400,8 @@ ExprRef ExprBuilder::createBinaryExpr(Kind kind, ExprRef l, ExprRef r) {
 			return createLOr(l, r);
 		case LAnd:
 			return createLAnd(l, r);
-		case FloatingPointAdd:
-			return createFloatingPointAdd(l, r);
+		case Addss:
+			return createAddss(l, r);
 		default:
 			LOG_FATAL("Non-binary expr: " + std::to_string(kind) + "\n");
 			return NULL;
@@ -1985,6 +1988,18 @@ ExprRef ConstantFoldingExprBuilder::createAdd(ExprRef l, ExprRef r) {
 	}
 	else
 	return ExprBuilder::createAdd(l, r);
+}
+
+ExprRef ConstantFoldingExprBuilder::createAddss(ExprRef l, ExprRef r) {
+	ConstantExprRef ce_l = castAs<ConstantExpr>(l);
+	ConstantExprRef ce_r = castAs<ConstantExpr>(r);
+
+	if (ce_l != NULL && ce_r != NULL) {
+		QSYM_ASSERT(l->bits() == r->bits());
+		return createConstant(ce_l->value() + ce_r->value(), l->bits());
+	}
+	else
+	return ExprBuilder::createAddss(l, r);
 }
 
 ExprRef ConstantFoldingExprBuilder::createAnd(ExprRef l, ExprRef r) {

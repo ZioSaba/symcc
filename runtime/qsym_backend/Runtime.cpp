@@ -233,7 +233,7 @@ DEF_BINARY_EXPR_BUILDER(unsigned_rem, URem)
 DEF_BINARY_EXPR_BUILDER(signed_rem, SRem)
 
 /**** CODICE MIO ****/
-DEF_BINARY_EXPR_BUILDER(FloatingPointAdd, FloatingPointAdd)
+DEF_BINARY_EXPR_BUILDER(addss, Addss)
 /********************/
 
 DEF_BINARY_EXPR_BUILDER(shift_left, Shl)

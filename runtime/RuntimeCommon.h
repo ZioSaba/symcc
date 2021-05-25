@@ -64,7 +64,7 @@ SymExpr _sym_build_logical_shift_right(SymExpr a, SymExpr b);
 SymExpr _sym_build_arithmetic_shift_right(SymExpr a, SymExpr b);
 
 /**** CODICE MIO ****/
-SymExpr _sym_build_FloatingPointAdd(SymExpr a, SymExpr b);
+SymExpr _sym_build_addss(SymExpr a, SymExpr b);
 /********************/
 
 SymExpr _sym_build_fp_add(SymExpr a, SymExpr b);

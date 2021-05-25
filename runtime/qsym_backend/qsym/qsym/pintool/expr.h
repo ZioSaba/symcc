@@ -78,7 +78,7 @@ enum Kind {
 
 
   /**** CODICE MIO ****/
-  FloatingPointAdd
+  Addss
   /********************/
 };
 
@@ -434,7 +434,7 @@ protected:
 };
 
 /**** CODICE MIO ****/
-class FPCostantExpr : public FloatingPointExpr{
+class FPConstantExpr : public FloatingPointExpr{
   // cosa ci va qui?
 };
 /********************/
@@ -882,7 +882,7 @@ protected:
 
 
 /**** CODICE MIO ****/
-class FloatingPointAddExpr : public FPLinearBinaryExpr {
+class AddssExpr : public FPLinearBinaryExpr {
   // cosa ci va qui?
 };
 /********************/

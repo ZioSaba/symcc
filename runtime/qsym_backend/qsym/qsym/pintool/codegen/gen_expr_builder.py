@@ -41,12 +41,12 @@ if __name__ == '__main__':
 }}\n\n""".format(func, name, ', '.join(args_name)))
 
     #CODICE MIO
-    #Aggiunto FloatingPointAdd in BINARY_KIND
+    #Aggiunto Addss in BINARY_KIND
 
     BINARY_KIND = [
     "Add", "Sub", "Mul", "UDiv", "SDiv", "URem", "SRem", "And", "Or", "Xor",
     "Shl", "LShr", "AShr", "Equal", "Distinct", "Ult", "Ule", "Ugt", "Uge",
-    "Slt", "Sle", "Sgt", "Sge", "LOr", "LAnd", "FloatingPointAdd"]
+    "Slt", "Sle", "Sgt", "Sge", "LOr", "LAnd", "Addss"]
 
     # generate createBinary
     code.append(
@@ -154,6 +154,7 @@ if __name__ == '__main__':
       "Shl": (RET_CONST, OP_BINARY, "<<"),
       "LShr": (RET_CONST, OP_FUNC,),
       "AShr": (RET_CONST, OP_FUNC,),
+      "Addss": (RET_CONST, OP_BINARY, "+"),
 
       # bool
       "Ult": (RET_BOOL, OP_FUNC,),

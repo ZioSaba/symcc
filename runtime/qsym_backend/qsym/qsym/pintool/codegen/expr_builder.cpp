@@ -699,16 +699,19 @@ ExprRef SymbolicExprBuilder::createAdd(ExprRef l, ExprRef r) {
 }
 
 /**** CODICE MIO ****/
-ExprRef SymbolicExprBuilder::createFloatingPointAdd(ExprRef l, ExprRef r) {
+ExprRef SymbolicExprBuilder::createAddss(ExprRef l, ExprRef r) {
   printf("DOPPIA EXPRREF\n");
+  return ExprBuilder::createAddss(l, r);
 }
 
-ExprRef SymbolicExprBuilder::createFloatingPointAdd(ConstantExprRef l, NonConstantExprRef r) {
+ExprRef SymbolicExprBuilder::createAddss(ConstantExprRef l, NonConstantExprRef r) {
   printf("CONSTANT E NON CONSTANT\n");
+  return ExprBuilder::createAddss(l, r);
 }
 
-ExprRef SymbolicExprBuilder::createFloatingPointAdd(NonConstantExprRef l, NonConstantExprRef r) {
+ExprRef SymbolicExprBuilder::createAddss(NonConstantExprRef l, NonConstantExprRef r) {
   printf("DOPPIA NONCOSTANT\n");
+  return ExprBuilder::createAddss(l, r);
 }
 /********************/
 
