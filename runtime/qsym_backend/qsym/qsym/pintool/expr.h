@@ -435,7 +435,54 @@ protected:
 
 /**** CODICE MIO ****/
 class FPConstantExpr : public FloatingPointExpr{
-  // cosa ci va qui?
+public:
+  FPConstantExpr(ADDRINT value, UINT32 bits) :
+    FloatingPointExpr(Constant, bits),
+    value_(bits, value) {}
+
+  FPConstantExpr(const llvm::APInt& value, UINT32 bits) :
+    FloatingPointExpr(Constant, bits),
+    value_(value) {}
+
+  inline llvm::APInt value() const { return value_; }
+  inline bool isZero() const { return value_ == 0.00; }
+  inline bool isOne() const { return value_ == 1.00; }
+  inline bool isAllOnes() const { return value_.isAllOnesValue(); }
+  static bool classOf(const Expr& e) { return e.kind() == Constant; }
+  UINT32 getActiveBits() const { return value_.getActiveBits(); }
+  void print(ostream& os, UINT depth) const override;
+  UINT32 _countLeadingZeros() const override {
+    return value_.countLeadingZeros();
+  }
+
+protected:
+  std::string getName() const override {
+    return "Floating Point Constant";
+  }
+
+  bool printAux(ostream& os) const override {
+    os << "value=0x" << value_.toString(16, false)
+      << ", bits=" << bits_;
+    return true;
+  }
+
+  z3::expr toZ3ExprRecursively(bool verbose) override {
+    // TODO
+  }
+
+  void hashAux(XXH32_state_t* state) override {
+    XXH32_update(state,
+        value_.getRawData(),
+        value_.getNumWords() * sizeof(uint64_t));
+  }
+
+  bool equalAux(const Expr& other) const override {
+    const FPConstantExpr& typed_other = static_cast<const FPConstantExpr&>(other);
+    return value_ == typed_other.value();
+  }
+
+  ExprRef evaluateImpl() override;
+  llvm::APInt value_;
 };
 /********************/
 
@@ -448,7 +495,9 @@ class NonConstantExpr : public IntegerExpr {
 
 /**** CODICE MIO ****/
 class FPNonConstantExpr : public FloatingPointExpr{
-  // cosa ci va qui?
+  public:
+    using FloatingPointExpr::FloatingPointExpr;
+    static bool classOf(const Expr& e) { return !ConstantExpr::classOf(e); }
 };
 /********************/
 
@@ -469,7 +518,18 @@ protected:
 
 /**** CODICE MIO ****/
 class FPUnaryExpr : public FPNonConstantExpr {
-  // cosa ci va qui?
+public:
+  FPUnaryExpr(Kind kind, ExprRef e, UINT32 bits)
+    : FPNonConstantExpr(kind, bits) {
+      addChild(e);
+    }
+  FPUnaryExpr(Kind kind, ExprRef e)
+    : FPUnaryExpr(kind, e, e->bits()) {}
+
+  ExprRef expr() const { return getFirstChild(); }
+
+protected:
+  ExprRef evaluateImpl() override;
 };
 /********************/
 
@@ -495,7 +555,23 @@ protected:
 
 /**** CODICE MIO ****/
 class FPBinaryExpr : public FPNonConstantExpr {
-  // cosa ci va qui?
+public:
+  FPBinaryExpr(Kind kind, ExprRef l,
+      ExprRef r, UINT32 bits) :
+    FPNonConstantExpr(kind, bits) {
+      addChild(l);
+      addChild(r);
+      QSYM_ASSERT(l->bits() == r->bits());
+    }
+
+  FPBinaryExpr(Kind kind,
+      ExprRef l,
+      ExprRef r) :
+    FPBinaryExpr(kind, l, r, l->bits()) {}
+
+  void print(ostream& os, UINT depth, const char* op) const;
+protected:
+  ExprRef evaluateImpl() override;
 };
 /********************/
 

@@ -1409,7 +1409,8 @@ ExprRef ExprBuilder::createBinaryExpr(Kind kind, ExprRef l, ExprRef r) {
 }
 
 ExprRef ExprBuilder::createUnaryExpr(Kind kind, ExprRef e) {
-	switch (kind) {		case Not:
+	switch (kind) {		
+    case Not:
 			return createNot(e);
 		case Neg:
 			return createNeg(e);
