@@ -66,7 +66,7 @@ if __name__ == '__main__':
 }\n\n""");
 
     # generate createUnary
-    UNARY_KIND = ["Not", "Neg", "LNot"]
+    UNARY_KIND = ["Not", "Neg", "LNot", "Cvtsi2ss"]
     code.append(
 """ExprRef ExprBuilder::createUnaryExpr(Kind kind, ExprRef e) {
 \tswitch (kind) {""")

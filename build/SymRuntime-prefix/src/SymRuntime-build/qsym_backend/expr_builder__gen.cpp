@@ -713,6 +713,11 @@ ExprRef SymbolicExprBuilder::createAddss(NonConstantExprRef l, NonConstantExprRe
   printf("DOPPIA NONCOSTANT\n");
   return ExprBuilder::createAddss(l, r);
 }
+
+ExprRef SymbolicExprBuilder::createCvtsi2ss(ExprRef e) {
+  printf("sono in createCvtsi2ss\n");
+  return ExprBuilder::createCvtsi2ss(e);
+}
 /********************/
 
 ExprRef SymbolicExprBuilder::createAdd(ConstantExprRef l, NonConstantExprRef r) {
@@ -1242,6 +1247,11 @@ ExprRef ExprBuilder::createNeg(ExprRef e)
 	return next_->createNeg(e);
 }
 
+ExprRef ExprBuilder::createCvtsi2ss(ExprRef e)
+{
+	return next_->createCvtsi2ss(e);
+}
+
 ExprRef ExprBuilder::createNot(ExprRef e)
 {
 	return next_->createNot(e);
@@ -1409,13 +1419,14 @@ ExprRef ExprBuilder::createBinaryExpr(Kind kind, ExprRef l, ExprRef r) {
 }
 
 ExprRef ExprBuilder::createUnaryExpr(Kind kind, ExprRef e) {
-	switch (kind) {		
-    case Not:
+	switch (kind) {		case Not:
 			return createNot(e);
 		case Neg:
 			return createNeg(e);
 		case LNot:
 			return createLNot(e);
+		case Cvtsi2ss:
+			return createCvtsi2ss(e);
 		default:
 			LOG_FATAL("Non-unary expr: " + std::to_string(kind) + "\n");
 			return NULL;

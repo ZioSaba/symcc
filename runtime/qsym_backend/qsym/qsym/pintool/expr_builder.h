@@ -30,6 +30,7 @@ public:
   virtual ExprRef createURem(ExprRef l, ExprRef r);
   virtual ExprRef createSRem(ExprRef l, ExprRef r);
   virtual ExprRef createNeg(ExprRef e);
+  virtual ExprRef createCvtsi2ss(ExprRef e);
   virtual ExprRef createNot(ExprRef e);
   virtual ExprRef createAnd(ExprRef l, ExprRef r);
   virtual ExprRef createOr(ExprRef l, ExprRef r);
@@ -265,6 +266,7 @@ public:
   ExprRef createLOr(ExprRef l, ExprRef r) override;
   ExprRef createLAnd(ExprRef l, ExprRef r) override;
   ExprRef createLNot(ExprRef e);
+  ExprRef createCvtsi2ss(ExprRef e) override;
   ExprRef createIte(
     ExprRef expr_cond,
     ExprRef expr_true,

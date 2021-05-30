@@ -713,6 +713,11 @@ ExprRef SymbolicExprBuilder::createAddss(NonConstantExprRef l, NonConstantExprRe
   printf("DOPPIA NONCOSTANT\n");
   return ExprBuilder::createAddss(l, r);
 }
+
+ExprRef SymbolicExprBuilder::createCvtsi2ss(ExprRef e) {
+  printf("sono in createCvtsi2ss\n");
+  return ExprBuilder::createCvtsi2ss(e);
+}
 /********************/
 
 ExprRef SymbolicExprBuilder::createAdd(ConstantExprRef l, NonConstantExprRef r) {

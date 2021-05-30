@@ -78,7 +78,8 @@ enum Kind {
 
 
   /**** CODICE MIO ****/
-  Addss
+  Addss,
+  Cvtsi2ss
   /********************/
 };
 
@@ -959,6 +960,10 @@ protected:
 
 /**** CODICE MIO ****/
 class AddssExpr : public FPLinearBinaryExpr {
+  // cosa ci va qui?
+};
+
+class Cvtsi2ssExpr : public FPUnaryExpr{
   // cosa ci va qui?
 };
 /********************/
