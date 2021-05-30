@@ -448,33 +448,16 @@ public:
   inline llvm::APInt value() const { return value_; }
   inline bool isZero() const { return value_ == 0.00; }
   inline bool isOne() const { return value_ == 1.00; }
-  inline bool isAllOnes() const { return value_.isAllOnesValue(); }
   static bool classOf(const Expr& e) { return e.kind() == Constant; }
-  UINT32 getActiveBits() const { return value_.getActiveBits(); }
-  void print(ostream& os, UINT depth) const override;
-  UINT32 _countLeadingZeros() const override {
-    return value_.countLeadingZeros();
-  }
 
 protected:
   std::string getName() const override {
     return "Floating Point Constant";
   }
 
-  bool printAux(ostream& os) const override {
-    os << "value=0x" << value_.toString(16, false)
-      << ", bits=" << bits_;
-    return true;
-  }
-
   z3::expr toZ3ExprRecursively(bool verbose) override {
-    // TODO
-  }
-
-  void hashAux(XXH32_state_t* state) override {
-    XXH32_update(state,
-        value_.getRawData(),
-        value_.getNumWords() * sizeof(uint64_t));
+    printf("sto facendo la conversinoe  con Z3\n");
+    return context_.fpa_val((double)value_.getZExtValue());
   }
 
   bool equalAux(const Expr& other) const override {
@@ -964,7 +947,20 @@ class AddssExpr : public FPLinearBinaryExpr {
 };
 
 class Cvtsi2ssExpr : public FPUnaryExpr{
-  // cosa ci va qui?
+public:
+  Cvtsi2ssExpr(ExprRef e)
+    : FPUnaryExpr(Cvtsi2ss, e) {}
+
+  static bool classOf(const Expr& e) { return e.kind() == Cvtsi2ss; }
+
+protected:
+  std::string getName() const override {
+    return "Cvtsi2ss";
+  }
+
+  z3::expr toZ3ExprRecursively(bool verbose) override {
+    return children_[0]->toZ3Expr(verbose);
+  }
 };
 /********************/
 
