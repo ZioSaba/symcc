@@ -37,6 +37,7 @@ if __name__ == '__main__':
         code.append(
 """ExprRef ExprBuilder::{0}
 {{
+//\tprintf("{1}");
 \treturn next_->{1}({2});
 }}\n\n""".format(func, name, ', '.join(args_name)))
 

@@ -715,7 +715,7 @@ ExprRef SymbolicExprBuilder::createAddss(NonConstantExprRef l, NonConstantExprRe
 }
 
 ExprRef SymbolicExprBuilder::createCvtsi2ss(ExprRef e) {
-  printf("sono in createCvtsi2ss\n");
+  printf("sono in createCvtsi2ss di expr_builder.cpp\n");
   return ExprBuilder::createCvtsi2ss(e);
 }
 /********************/
@@ -1164,196 +1164,235 @@ ExprBuilder* PruneExprBuilder::create() {
 
 ExprRef ExprBuilder::createBool(bool b)
 {
+//	printf("createBool");
 	return next_->createBool(b);
 }
 
 ExprRef ExprBuilder::createConstant(ADDRINT value, UINT32 bits)
 {
+//	printf("createConstant");
 	return next_->createConstant(value, bits);
 }
 
 ExprRef ExprBuilder::createConstant(llvm::APInt value, UINT32 bits)
 {
+//	printf("createConstant");
 	return next_->createConstant(value, bits);
 }
 
 ExprRef ExprBuilder::createRead(ADDRINT off)
 {
+//	printf("createRead");
 	return next_->createRead(off);
 }
 
 ExprRef ExprBuilder::createConcat(ExprRef l, ExprRef r)
 {
+//	printf("createConcat");
 	return next_->createConcat(l, r);
 }
 
 ExprRef ExprBuilder::createExtract(ExprRef e, UINT32 index, UINT32 bits)
 {
+//	printf("createExtract");
 	return next_->createExtract(e, index, bits);
 }
 
 ExprRef ExprBuilder::createZExt(ExprRef e, UINT32 bits)
 {
+//	printf("createZExt");
 	return next_->createZExt(e, bits);
 }
 
 ExprRef ExprBuilder::createSExt(ExprRef e, UINT32 bits)
 {
+//	printf("createSExt");
 	return next_->createSExt(e, bits);
 }
 
 ExprRef ExprBuilder::createAdd(ExprRef l, ExprRef r)
 {
+//	printf("createAdd");
 	return next_->createAdd(l, r);
 }
 
 ExprRef ExprBuilder::createAddss(ExprRef l, ExprRef r)
 {
+//	printf("createAddss");
 	return next_->createAddss(l, r);
 }
 
 ExprRef ExprBuilder::createSub(ExprRef l, ExprRef r)
 {
+//	printf("createSub");
 	return next_->createSub(l, r);
 }
 
 ExprRef ExprBuilder::createMul(ExprRef l, ExprRef r)
 {
+//	printf("createMul");
 	return next_->createMul(l, r);
 }
 
 ExprRef ExprBuilder::createUDiv(ExprRef l, ExprRef r)
 {
+//	printf("createUDiv");
 	return next_->createUDiv(l, r);
 }
 
 ExprRef ExprBuilder::createSDiv(ExprRef l, ExprRef r)
 {
+//	printf("createSDiv");
 	return next_->createSDiv(l, r);
 }
 
 ExprRef ExprBuilder::createURem(ExprRef l, ExprRef r)
 {
+//	printf("createURem");
 	return next_->createURem(l, r);
 }
 
 ExprRef ExprBuilder::createSRem(ExprRef l, ExprRef r)
 {
+//	printf("createSRem");
 	return next_->createSRem(l, r);
 }
 
 ExprRef ExprBuilder::createNeg(ExprRef e)
 {
+//	printf("createNeg");
 	return next_->createNeg(e);
 }
 
 ExprRef ExprBuilder::createCvtsi2ss(ExprRef e)
 {
+//	printf("createCvtsi2ss");
 	return next_->createCvtsi2ss(e);
 }
 
 ExprRef ExprBuilder::createNot(ExprRef e)
 {
+//	printf("createNot");
 	return next_->createNot(e);
 }
 
 ExprRef ExprBuilder::createAnd(ExprRef l, ExprRef r)
 {
+//	printf("createAnd");
 	return next_->createAnd(l, r);
 }
 
 ExprRef ExprBuilder::createOr(ExprRef l, ExprRef r)
 {
+//	printf("createOr");
 	return next_->createOr(l, r);
 }
 
 ExprRef ExprBuilder::createXor(ExprRef l, ExprRef r)
 {
+//	printf("createXor");
 	return next_->createXor(l, r);
 }
 
 ExprRef ExprBuilder::createShl(ExprRef l, ExprRef r)
 {
+//	printf("createShl");
 	return next_->createShl(l, r);
 }
 
 ExprRef ExprBuilder::createLShr(ExprRef l, ExprRef r)
 {
+//	printf("createLShr");
 	return next_->createLShr(l, r);
 }
 
 ExprRef ExprBuilder::createAShr(ExprRef l, ExprRef r)
 {
+//	printf("createAShr");
 	return next_->createAShr(l, r);
 }
 
 ExprRef ExprBuilder::createEqual(ExprRef l, ExprRef r)
 {
+//	printf("createEqual");
 	return next_->createEqual(l, r);
 }
 
 ExprRef ExprBuilder::createDistinct(ExprRef l, ExprRef r)
 {
+//	printf("createDistinct");
 	return next_->createDistinct(l, r);
 }
 
 ExprRef ExprBuilder::createUlt(ExprRef l, ExprRef r)
 {
+//	printf("createUlt");
 	return next_->createUlt(l, r);
 }
 
 ExprRef ExprBuilder::createUle(ExprRef l, ExprRef r)
 {
+//	printf("createUle");
 	return next_->createUle(l, r);
 }
 
 ExprRef ExprBuilder::createUgt(ExprRef l, ExprRef r)
 {
+//	printf("createUgt");
 	return next_->createUgt(l, r);
 }
 
 ExprRef ExprBuilder::createUge(ExprRef l, ExprRef r)
 {
+//	printf("createUge");
 	return next_->createUge(l, r);
 }
 
 ExprRef ExprBuilder::createSlt(ExprRef l, ExprRef r)
 {
+//	printf("createSlt");
 	return next_->createSlt(l, r);
 }
 
 ExprRef ExprBuilder::createSle(ExprRef l, ExprRef r)
 {
+//	printf("createSle");
 	return next_->createSle(l, r);
 }
 
 ExprRef ExprBuilder::createSgt(ExprRef l, ExprRef r)
 {
+//	printf("createSgt");
 	return next_->createSgt(l, r);
 }
 
 ExprRef ExprBuilder::createSge(ExprRef l, ExprRef r)
 {
+//	printf("createSge");
 	return next_->createSge(l, r);
 }
 
 ExprRef ExprBuilder::createLOr(ExprRef l, ExprRef r)
 {
+//	printf("createLOr");
 	return next_->createLOr(l, r);
 }
 
 ExprRef ExprBuilder::createLAnd(ExprRef l, ExprRef r)
 {
+//	printf("createLAnd");
 	return next_->createLAnd(l, r);
 }
 
 ExprRef ExprBuilder::createLNot(ExprRef e)
 {
+//	printf("createLNot");
 	return next_->createLNot(e);
 }
 
 ExprRef ExprBuilder::createIte(ExprRef expr_cond, ExprRef expr_true, ExprRef expr_false)
 {
+//	printf("createIte");
 	return next_->createIte(expr_cond, expr_true, expr_false);
 }
 
@@ -1475,6 +1514,12 @@ ExprRef BaseExprBuilder::createAdd(ExprRef l, ExprRef r) {
 	return ref;
 }
 
+ExprRef BaseExprBuilder::createAddss(ExprRef l, ExprRef r) {
+	ExprRef ref = std::make_shared<AddssExpr>(l, r);
+	addUses(ref);
+	return ref;
+}
+
 ExprRef BaseExprBuilder::createSub(ExprRef l, ExprRef r) {
 	ExprRef ref = std::make_shared<SubExpr>(l, r);
 	addUses(ref);
@@ -1519,6 +1564,12 @@ ExprRef BaseExprBuilder::createNeg(ExprRef e) {
 
 ExprRef BaseExprBuilder::createNot(ExprRef e) {
 	ExprRef ref = std::make_shared<NotExpr>(e);
+	addUses(ref);
+	return ref;
+}
+
+ExprRef BaseExprBuilder::createCvtsi2ss(ExprRef e) {
+	ExprRef ref = std::make_shared<Cvtsi2ssExpr>(e);
 	addUses(ref);
 	return ref;
 }

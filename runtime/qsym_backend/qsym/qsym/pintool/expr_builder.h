@@ -85,6 +85,7 @@ public:
   ExprRef createZExt(ExprRef e, UINT32 bits) override;
   ExprRef createSExt(ExprRef e, UINT32 bits) override;
   ExprRef createAdd(ExprRef l, ExprRef r) override;
+  ExprRef createAddss(ExprRef l, ExprRef r) override;
   ExprRef createSub(ExprRef l, ExprRef r) override;
   ExprRef createMul(ExprRef l, ExprRef r) override;
   ExprRef createUDiv(ExprRef l, ExprRef r) override;
@@ -93,6 +94,7 @@ public:
   ExprRef createSRem(ExprRef l, ExprRef r) override;
   ExprRef createNeg(ExprRef e) override;
   ExprRef createNot(ExprRef e) override;
+  ExprRef createCvtsi2ss(ExprRef e) override;
   ExprRef createAnd(ExprRef l, ExprRef r) override;
   ExprRef createOr(ExprRef l, ExprRef r) override;
   ExprRef createXor(ExprRef l, ExprRef r) override;
@@ -280,6 +282,7 @@ private:
   ExprRef createAdd(NonConstantExprRef l, NonConstantExprRef r);
   ExprRef createAddss(ConstantExprRef l, NonConstantExprRef r);
   ExprRef createAddss(NonConstantExprRef l, NonConstantExprRef r);
+  ExprRef createCvtsi2ss(NonConstantExprRef e);
   ExprRef createSub(ConstantExprRef l, NonConstantExprRef r);
   ExprRef createSub(NonConstantExprRef l, NonConstantExprRef r);
   ExprRef createMul(ConstantExprRef l, NonConstantExprRef r);
