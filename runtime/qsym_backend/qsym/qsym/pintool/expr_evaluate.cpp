@@ -70,4 +70,18 @@ namespace qsym {
     return checkExpr(CEB->createIte(c0, c1, c2));
   }
 
+  /**** CODICE MIO ****/
+  ExprRef FPUnaryExpr::evaluateImpl() {
+    return NULL;
+  }
+
+  ExprRef FPConstantExpr::evaluateImpl() {
+    return NULL;
+  }
+
+  ExprRef FPBinaryExpr::evaluateImpl() {
+    return NULL;
+  }
+  /********************/
+
 } // namespace qsym

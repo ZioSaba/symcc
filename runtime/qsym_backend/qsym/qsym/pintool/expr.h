@@ -94,11 +94,6 @@ bool isNegatableKind(Kind kind);
 
 DECLARE_EXPR(Expr);
 DECLARE_EXPR(ConstantExpr);
-
-/**** CODICE MIO ****/
-DECLARE_EXPR(FloatingPointExpr)
-/********************/
-
 DECLARE_EXPR(NonConstantExpr);
 DECLARE_EXPR(BoolExpr);
 
@@ -366,13 +361,11 @@ struct ExprRefEqual {
 // Definizione della classe che rappresenterà tutte le espressioni intere 
 class IntegerExpr : public Expr {
   using Expr::Expr;
-  // funzioni di conversione
 };
 
 // Definizione della classe che rappresenterà tutte le espressioni in virgola mobile
 class FloatingPointExpr : public Expr {
   using Expr::Expr;
-  // funzioni di conversione
 };
 
 /********************/
@@ -436,33 +429,21 @@ protected:
 
 /**** CODICE MIO ****/
 class FPConstantExpr : public FloatingPointExpr{
+  // DA IMPLEMENTARE
+
 public:
   FPConstantExpr(ADDRINT value, UINT32 bits) :
     FloatingPointExpr(Constant, bits),
     value_(bits, value) {}
 
-  FPConstantExpr(const llvm::APInt& value, UINT32 bits) :
-    FloatingPointExpr(Constant, bits),
-    value_(value) {}
-
-  inline llvm::APInt value() const { return value_; }
-  inline bool isZero() const { return value_ == 0.00; }
-  inline bool isOne() const { return value_ == 1.00; }
-  static bool classOf(const Expr& e) { return e.kind() == Constant; }
 
 protected:
   std::string getName() const override {
-    return "Floating Point Constant";
+    return "Floating-point Constant";
   }
 
   z3::expr toZ3ExprRecursively(bool verbose) override {
-    printf("sto facendo la conversinoe  con Z3\n");
-    return context_.fpa_val((double)value_.getZExtValue());
-  }
-
-  bool equalAux(const Expr& other) const override {
-    const FPConstantExpr& typed_other = static_cast<const FPConstantExpr&>(other);
-    return value_ == typed_other.value();
+      return context_.fpa_val((float)value_.getZExtValue());
   }
 
   ExprRef evaluateImpl() override;
@@ -943,7 +924,18 @@ protected:
 
 /**** CODICE MIO ****/
 class AddssExpr : public FPLinearBinaryExpr {
-  // cosa ci va qui?
+public:
+  AddssExpr(ExprRef l, ExprRef h)
+    : FPLinearBinaryExpr(Addss, l, h) {}
+
+protected:
+  std::string getName() const override {
+    return "Addss";
+  }
+
+  z3::expr toZ3ExprRecursively(bool verbose) override {
+    // TODO
+  }
 };
 
 class Cvtsi2ssExpr : public FPUnaryExpr{
@@ -951,15 +943,13 @@ public:
   Cvtsi2ssExpr(ExprRef e)
     : FPUnaryExpr(Cvtsi2ss, e) {}
 
-  static bool classOf(const Expr& e) { return e.kind() == Cvtsi2ss; }
-
 protected:
   std::string getName() const override {
     return "Cvtsi2ss";
   }
 
   z3::expr toZ3ExprRecursively(bool verbose) override {
-    return children_[0]->toZ3Expr(verbose);
+    // TODO
   }
 };
 /********************/
