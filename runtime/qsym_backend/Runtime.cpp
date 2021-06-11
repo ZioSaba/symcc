@@ -267,7 +267,7 @@ SymExpr _sym_build_neg(SymExpr expr) {
 
 /**** CODICE MIO ****/
 SymExpr _sym_build_cvtsi2ss(SymExpr expr){
-  printf("sono in runtimecpp per cvtsi2ss\n");
+  //printf("sono in runtimecpp per cvtsi2ss\n");
   return registerExpression(g_expr_builder->createCvtsi2ss(allocatedExpressions.at(expr)));
 }
 /********************/

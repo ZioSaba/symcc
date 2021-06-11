@@ -429,7 +429,6 @@ protected:
 
 /**** CODICE MIO ****/
 class FPConstantExpr : public FloatingPointExpr{
-  // DA IMPLEMENTARE
 
 public:
   FPConstantExpr(ADDRINT value, UINT32 bits) :

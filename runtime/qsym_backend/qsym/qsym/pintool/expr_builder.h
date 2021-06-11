@@ -282,7 +282,6 @@ private:
   ExprRef createAdd(NonConstantExprRef l, NonConstantExprRef r);
   ExprRef createAddss(ConstantExprRef l, NonConstantExprRef r);
   ExprRef createAddss(NonConstantExprRef l, NonConstantExprRef r);
-  ExprRef createCvtsi2ss(NonConstantExprRef e);
   ExprRef createSub(ConstantExprRef l, NonConstantExprRef r);
   ExprRef createSub(NonConstantExprRef l, NonConstantExprRef r);
   ExprRef createMul(ConstantExprRef l, NonConstantExprRef r);
