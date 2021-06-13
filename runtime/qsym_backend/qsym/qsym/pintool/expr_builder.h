@@ -218,7 +218,6 @@ public:
   ExprRef createZExt(ExprRef e, UINT32 bits) override;
   ExprRef createSExt(ExprRef e, UINT32 bits) override;
   ExprRef createAdd(ExprRef l, ExprRef r) override;
-  ExprRef createAddss(ExprRef l, ExprRef r) override;
   ExprRef createSub(ExprRef l, ExprRef r) override;
   ExprRef createMul(ExprRef l, ExprRef r) override;
   ExprRef createUDiv(ExprRef l, ExprRef r) override;

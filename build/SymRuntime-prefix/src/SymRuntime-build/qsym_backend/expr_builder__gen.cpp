@@ -2053,18 +2053,6 @@ ExprRef ConstantFoldingExprBuilder::createAdd(ExprRef l, ExprRef r) {
 	return ExprBuilder::createAdd(l, r);
 }
 
-ExprRef ConstantFoldingExprBuilder::createAddss(ExprRef l, ExprRef r) {
-	ConstantExprRef ce_l = castAs<ConstantExpr>(l);
-	ConstantExprRef ce_r = castAs<ConstantExpr>(r);
-
-	if (ce_l != NULL && ce_r != NULL) {
-		QSYM_ASSERT(l->bits() == r->bits());
-		return createConstant(ce_l->value() + ce_r->value(), l->bits());
-	}
-	else
-	return ExprBuilder::createAddss(l, r);
-}
-
 ExprRef ConstantFoldingExprBuilder::createAnd(ExprRef l, ExprRef r) {
 	ConstantExprRef ce_l = castAs<ConstantExpr>(l);
 	ConstantExprRef ce_r = castAs<ConstantExpr>(r);

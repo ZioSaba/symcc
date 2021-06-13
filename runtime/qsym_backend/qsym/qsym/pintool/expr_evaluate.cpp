@@ -72,15 +72,15 @@ namespace qsym {
 
   /**** CODICE MIO ****/
   ExprRef FPUnaryExpr::evaluateImpl() {
-    return NULL;
+    assert(0 && "sono nella evaluate di FPUNARYEXPR\n");
   }
 
   ExprRef FPConstantExpr::evaluateImpl() {
-    return NULL;
+    assert(0 && "sono nella evaluate di FPCONSTANT\n");
   }
 
   ExprRef FPBinaryExpr::evaluateImpl() {
-    return NULL;
+    assert(0 && "sono nella evaluate di FPBINARY\n");
   }
   /********************/
 

@@ -155,7 +155,6 @@ if __name__ == '__main__':
       "Shl": (RET_CONST, OP_BINARY, "<<"),
       "LShr": (RET_CONST, OP_FUNC,),
       "AShr": (RET_CONST, OP_FUNC,),
-      "Addss": (RET_CONST, OP_BINARY, "+"),
 
       # bool
       "Ult": (RET_BOOL, OP_FUNC,),
