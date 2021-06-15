@@ -949,7 +949,13 @@ protected:
   }
 
   z3::expr toZ3ExprRecursively(bool verbose) override {
-    return to_expr(context_, Z3_mk_fpa_to_fp_bv(context_, children_[0]->toZ3Expr(verbose), Z3_mk_fpa_sort(context_, 8, 23)));
+    //return to_expr(context_, Z3_mk_fpa_to_fp_bv(context_, children_[0]->toZ3Expr(verbose), Z3_mk_fpa_sort(context_, 8, 23)));
+    Z3_ast sort;
+    Z3_inc_ref(context_, sort);
+    sort = Z3_mk_fpa_to_fp_bv(context_, children_[0]->toZ3Expr(verbose), Z3_mk_fpa_sort(context_, 8, 23));
+    z3::expr res = to_expr(context_, sort);
+    Z3_dec_ref(context_, sort);   
+    return res; 
   }
 };
 /********************/
