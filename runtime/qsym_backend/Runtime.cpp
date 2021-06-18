@@ -270,6 +270,11 @@ SymExpr _sym_build_cvtsi2ss(SymExpr expr){
   //printf("sono in runtimecpp per cvtsi2ss\n");
   return registerExpression(g_expr_builder->createCvtsi2ss(allocatedExpressions.at(expr)));
 }
+
+SymExpr _sym_build_floating_point(double value, int bits){
+  printf("creo una costante fp\n");
+  //return registerExpression(g_expr_builder->createFPConstant(value, bits));
+}
 /********************/
 
 SymExpr _sym_build_not(SymExpr expr) {
