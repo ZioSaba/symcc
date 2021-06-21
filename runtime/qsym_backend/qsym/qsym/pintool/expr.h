@@ -431,9 +431,10 @@ protected:
 class FPConstantExpr : public FloatingPointExpr{
 
 public:
-  FPConstantExpr(ADDRINT value, UINT32 bits) :
+  FPConstantExpr(float value, UINT32 bits) :
     FloatingPointExpr(Constant, bits),
-    value_(bits, value) {}
+    value_(value),
+    bits_ (bits) {}
 
 
 protected:
@@ -442,11 +443,14 @@ protected:
   }
 
   z3::expr toZ3ExprRecursively(bool verbose) override {
-      return context_.fpa_val((float)value_.getZExtValue());
+      if (bits_ == 32)
+        return context_.fpa_val((float)value_);
+      else
+        return context_.fpa_val(value_);
   }
 
   ExprRef evaluateImpl() override;
-  llvm::APInt value_;
+  double value_;
 };
 /********************/
 
