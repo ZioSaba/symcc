@@ -16,6 +16,7 @@ public:
   virtual ExprRef createBool(bool b);
   virtual ExprRef createConstant(ADDRINT value, UINT32 bits);
   virtual ExprRef createConstant(llvm::APInt value, UINT32 bits);
+  virtual ExprRef createFPConstant(double value, UINT32 bits);
   virtual ExprRef createRead(ADDRINT off);
   virtual ExprRef createConcat(ExprRef l, ExprRef r);
   virtual ExprRef createExtract(ExprRef e, UINT32 index, UINT32 bits);
@@ -81,6 +82,7 @@ public:
   ExprRef createBool(bool b) override;
   ExprRef createConstant(ADDRINT value, UINT32 bits) override;
   ExprRef createConstant(llvm::APInt value, UINT32 bits) override;
+  ExprRef createFPConstant(double value, UINT32 bits) override;
   ExprRef createConcat(ExprRef l, ExprRef r) override;
   ExprRef createZExt(ExprRef e, UINT32 bits) override;
   ExprRef createSExt(ExprRef e, UINT32 bits) override;

@@ -451,6 +451,7 @@ protected:
 
   ExprRef evaluateImpl() override;
   double value_;
+  int bits_;
 };
 /********************/
 

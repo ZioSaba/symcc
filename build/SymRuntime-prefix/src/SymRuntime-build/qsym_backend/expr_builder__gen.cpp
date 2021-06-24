@@ -700,17 +700,7 @@ ExprRef SymbolicExprBuilder::createAdd(ExprRef l, ExprRef r) {
 
 /**** CODICE MIO ****/
 ExprRef SymbolicExprBuilder::createAddss(ExprRef l, ExprRef r) {
-  printf("DOPPIA EXPRREF\n");
-  return ExprBuilder::createAddss(l, r);
-}
-
-ExprRef SymbolicExprBuilder::createAddss(ConstantExprRef l, NonConstantExprRef r) {
-  printf("CONSTANT E NON CONSTANT\n");
-  return ExprBuilder::createAddss(l, r);
-}
-
-ExprRef SymbolicExprBuilder::createAddss(NonConstantExprRef l, NonConstantExprRef r) {
-  printf("DOPPIA NONCOSTANT\n");
+  //printf("sono in createAddss di expr_builder.cpp\n");
   return ExprBuilder::createAddss(l, r);
 }
 
@@ -1180,6 +1170,12 @@ ExprRef ExprBuilder::createConstant(llvm::APInt value, UINT32 bits)
 	return next_->createConstant(value, bits);
 }
 
+ExprRef ExprBuilder::createFPConstant(double value, UINT32 bits)
+{
+//	printf("createFPConstant");
+	return next_->createFPConstant(value, bits);
+}
+
 ExprRef ExprBuilder::createRead(ADDRINT off)
 {
 //	printf("createRead");
@@ -1486,6 +1482,12 @@ ExprRef BaseExprBuilder::createConstant(ADDRINT value, UINT32 bits) {
 
 ExprRef BaseExprBuilder::createConstant(llvm::APInt value, UINT32 bits) {
 	ExprRef ref = std::make_shared<ConstantExpr>(value, bits);
+	addUses(ref);
+	return ref;
+}
+
+ExprRef BaseExprBuilder::createFPConstant(double value, UINT32 bits) {
+	ExprRef ref = std::make_shared<FPConstantExpr>(value, bits);
 	addUses(ref);
 	return ref;
 }

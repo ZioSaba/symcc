@@ -272,8 +272,8 @@ SymExpr _sym_build_cvtsi2ss(SymExpr expr){
 }
 
 SymExpr _sym_build_floating_point(double value, int bits){
-  printf("creo una costante fp\n");
-  //return registerExpression(g_expr_builder->createFPConstant(value, bits));
+  //printf("creo una costante fp\n");
+  return registerExpression(g_expr_builder->createFPConstant(value, bits));
 }
 /********************/
 
