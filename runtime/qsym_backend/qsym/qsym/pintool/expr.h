@@ -939,7 +939,7 @@ protected:
 
   z3::expr toZ3ExprRecursively(bool verbose) override {
     // probabilmente questa, dove un bitvector proviene da CVTSI2SS e l'altro devo intercettare io il valore float dalla read 
-    // return children_[0]->toZ3Expr(verbose) + children_[1]->toZ3Expr(verbose);
+    return children_[0]->toZ3Expr(verbose) + children_[1]->toZ3Expr(verbose);
   }
 };
 

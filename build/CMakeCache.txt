@@ -227,6 +227,9 @@ SymbolicCompiler_SOURCE_DIR:STATIC=/home/zio-saba/Scrivania/symcc
 //Make the compiler work correctly with -m32
 TARGET_32BIT:BOOL=OFF
 
+//No help, variable specified on the command line.
+Z3_TRUST_SYSTEM_VERSION:UNINITIALIZED=on
+
 
 ########################
 # INTERNAL cache entries
