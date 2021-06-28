@@ -442,6 +442,11 @@ protected:
     return "Floating-point Constant";
   }
 
+  bool printAux(ostream& os) const override {
+    os << "value=" << value_;
+    return true;
+  }
+
   z3::expr toZ3ExprRecursively(bool verbose) override {
       if (bits_ == 32)
         return context_.fpa_val((float)value_);
