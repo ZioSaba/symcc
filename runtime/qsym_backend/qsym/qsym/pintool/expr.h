@@ -431,7 +431,7 @@ protected:
 class FPConstantExpr : public FloatingPointExpr{
 
 public:
-  FPConstantExpr(float value, UINT32 bits) :
+  FPConstantExpr(double value, UINT32 bits) :
     FloatingPointExpr(Constant, bits),
     value_(value),
     bits_ (bits) {}
