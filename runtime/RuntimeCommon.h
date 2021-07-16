@@ -65,6 +65,7 @@ SymExpr _sym_build_arithmetic_shift_right(SymExpr a, SymExpr b);
 
 /**** CODICE MIO ****/
 SymExpr _sym_build_addss(SymExpr a, SymExpr b);
+SymExpr _sym_build_comiss(SymExpr a, SymExpr b);
 SymExpr _sym_build_cvtsi2ss(SymExpr expr);
 SymExpr _sym_build_floating_point(double value, int bits);
 /********************/

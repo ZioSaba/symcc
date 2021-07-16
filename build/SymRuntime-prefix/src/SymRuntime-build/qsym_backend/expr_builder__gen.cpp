@@ -708,6 +708,11 @@ ExprRef SymbolicExprBuilder::createCvtsi2ss(ExprRef e) {
   //printf("sono in createCvtsi2ss di expr_builder.cpp\n");
   return ExprBuilder::createCvtsi2ss(e);
 }
+
+ExprRef SymbolicExprBuilder::createComiss(ExprRef l, ExprRef r) {
+  printf("sono in createComiss di expr_builder.cpp\n");
+  return ExprBuilder::createComiss(l, r);
+}
 /********************/
 
 ExprRef SymbolicExprBuilder::createAdd(ConstantExprRef l, NonConstantExprRef r) {
@@ -1218,6 +1223,12 @@ ExprRef ExprBuilder::createAddss(ExprRef l, ExprRef r)
 	return next_->createAddss(l, r);
 }
 
+ExprRef ExprBuilder::createComiss(ExprRef l, ExprRef r)
+{
+//	printf("createComiss");
+	return next_->createComiss(l, r);
+}
+
 ExprRef ExprBuilder::createSub(ExprRef l, ExprRef r)
 {
 //	printf("createSub");
@@ -1518,6 +1529,12 @@ ExprRef BaseExprBuilder::createAdd(ExprRef l, ExprRef r) {
 
 ExprRef BaseExprBuilder::createAddss(ExprRef l, ExprRef r) {
 	ExprRef ref = std::make_shared<AddssExpr>(l, r);
+	addUses(ref);
+	return ref;
+}
+
+ExprRef BaseExprBuilder::createComiss(ExprRef l, ExprRef r) {
+	ExprRef ref = std::make_shared<ComissExpr>(l, r);
 	addUses(ref);
 	return ref;
 }

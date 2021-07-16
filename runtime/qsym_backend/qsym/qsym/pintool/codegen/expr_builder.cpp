@@ -708,6 +708,11 @@ ExprRef SymbolicExprBuilder::createCvtsi2ss(ExprRef e) {
   //printf("sono in createCvtsi2ss di expr_builder.cpp\n");
   return ExprBuilder::createCvtsi2ss(e);
 }
+
+ExprRef SymbolicExprBuilder::createComiss(ExprRef l, ExprRef r) {
+  //printf("sono in createComiss di expr_builder.cpp\n");
+  return ExprBuilder::createComiss(l, r);
+}
 /********************/
 
 ExprRef SymbolicExprBuilder::createAdd(ConstantExprRef l, NonConstantExprRef r) {

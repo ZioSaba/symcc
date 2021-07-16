@@ -234,6 +234,7 @@ DEF_BINARY_EXPR_BUILDER(signed_rem, SRem)
 
 /**** CODICE MIO ****/
 DEF_BINARY_EXPR_BUILDER(addss, Addss)
+DEF_BINARY_EXPR_BUILDER(comiss, Comiss)
 /********************/
 
 DEF_BINARY_EXPR_BUILDER(shift_left, Shl)

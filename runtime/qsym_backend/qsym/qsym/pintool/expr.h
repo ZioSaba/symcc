@@ -79,7 +79,8 @@ enum Kind {
 
   /**** CODICE MIO ****/
   Addss,
-  Cvtsi2ss
+  Cvtsi2ss,
+  Comiss
   /********************/
 };
 
@@ -966,6 +967,21 @@ protected:
     z3::expr res = to_expr(context_, sort);
     Z3_dec_ref(context_, sort);   
     return res; 
+  }
+};
+
+class ComissExpr : public FPLinearBinaryExpr {
+public:
+  ComissExpr(ExprRef l, ExprRef h)
+    : FPLinearBinaryExpr(Comiss, l, h) {}
+
+protected:
+  std::string getName() const override {
+    return "Comiss";
+  }
+
+  z3::expr toZ3ExprRecursively(bool verbose) override {
+    // TODO
   }
 };
 /********************/

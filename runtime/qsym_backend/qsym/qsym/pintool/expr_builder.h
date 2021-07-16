@@ -24,6 +24,7 @@ public:
   virtual ExprRef createSExt(ExprRef e, UINT32 bits);
   virtual ExprRef createAdd(ExprRef l, ExprRef r);
   virtual ExprRef createAddss(ExprRef l, ExprRef r);
+  virtual ExprRef createComiss(ExprRef l, ExprRef r);
   virtual ExprRef createSub(ExprRef l, ExprRef r);
   virtual ExprRef createMul(ExprRef l, ExprRef r);
   virtual ExprRef createUDiv(ExprRef l, ExprRef r);
@@ -88,6 +89,7 @@ public:
   ExprRef createSExt(ExprRef e, UINT32 bits) override;
   ExprRef createAdd(ExprRef l, ExprRef r) override;
   ExprRef createAddss(ExprRef l, ExprRef r) override;
+  ExprRef createComiss(ExprRef l, ExprRef r) override;
   ExprRef createSub(ExprRef l, ExprRef r) override;
   ExprRef createMul(ExprRef l, ExprRef r) override;
   ExprRef createUDiv(ExprRef l, ExprRef r) override;
@@ -257,6 +259,7 @@ public:
   ExprRef createConcat(ExprRef l, ExprRef r) override;
   ExprRef createAdd(ExprRef l, ExprRef r) override;
   ExprRef createAddss(ExprRef l, ExprRef r) override;
+  ExprRef createComiss(ExprRef l, ExprRef r) override;
   ExprRef createSub(ExprRef l, ExprRef r) override;
   ExprRef createMul(ExprRef l, ExprRef r) override;
   ExprRef createSDiv(ExprRef l, ExprRef r) override;
@@ -281,8 +284,6 @@ public:
 private:
   ExprRef createAdd(ConstantExprRef l, NonConstantExprRef r);
   ExprRef createAdd(NonConstantExprRef l, NonConstantExprRef r);
-  ExprRef createAddss(ConstantExprRef l, NonConstantExprRef r);
-  ExprRef createAddss(NonConstantExprRef l, NonConstantExprRef r);
   ExprRef createSub(ConstantExprRef l, NonConstantExprRef r);
   ExprRef createSub(NonConstantExprRef l, NonConstantExprRef r);
   ExprRef createMul(ConstantExprRef l, NonConstantExprRef r);
