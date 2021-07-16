@@ -770,7 +770,6 @@ class SExtExpr : public ExtExpr {
 public:
   SExtExpr(ExprRef e, UINT32 bits)
     : ExtExpr(SExt, e, bits) {}
-
   std::string getName() const override {
     return "SExt";
   }
@@ -981,7 +980,17 @@ protected:
   }
 
   z3::expr toZ3ExprRecursively(bool verbose) override {
-    // TODO
+    Z3_sort bv_sort = Z3_mk_bv_sort(context_, 32);
+    Z3_ast unordered = Z3_mk_numeral(context_, "2", bv_sort);
+    Z3_ast maggiore = Z3_mk_numeral(context_, "1", bv_sort);
+    Z3_ast uguale = Z3_mk_numeral(context_, "0", bv_sort);
+    Z3_ast minore = Z3_mk_numeral(context_, "-1", bv_sort);
+    Z3_ast livello_3 = Z3_mk_ite(context_, Z3_mk_fpa_lt(context_, children_[0]->toZ3Expr(verbose), children_[1]->toZ3Expr(verbose)), minore, unordered);
+    Z3_ast livello_2 = Z3_mk_ite(context_, Z3_mk_fpa_gt(context_, children_[0]->toZ3Expr(verbose), children_[1]->toZ3Expr(verbose)), maggiore, uguale);
+    Z3_ast livello_1 = Z3_mk_ite(context_, Z3_mk_fpa_geq(context_, children_[0]->toZ3Expr(verbose), children_[1]->toZ3Expr(verbose)), livello_2, livello_3);
+    z3::expr res = to_expr(context_, livello_1);
+  
+    return res;
   }
 };
 /********************/
