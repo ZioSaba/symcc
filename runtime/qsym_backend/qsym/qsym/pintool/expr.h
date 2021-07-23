@@ -943,7 +943,7 @@ protected:
   }
 
   z3::expr toZ3ExprRecursively(bool verbose) override {
-    // probabilmente questa, dove un bitvector proviene da CVTSI2SS e l'altro devo intercettare io il valore float dalla read 
+    // probabilmente questa, dove un bitvector proviene da CVTSI2SS e l'altro devo intercettare io il valore float dalla read
     return children_[0]->toZ3Expr(verbose) + children_[1]->toZ3Expr(verbose);
   }
 };
@@ -959,13 +959,23 @@ protected:
   }
 
   z3::expr toZ3ExprRecursively(bool verbose) override {
-    //return to_expr(context_, Z3_mk_fpa_to_fp_bv(context_, children_[0]->toZ3Expr(verbose), Z3_mk_fpa_sort(context_, 8, 23)));
+    /*
+    //return to_expr(context_, Z3_mk_fpa_to_fp_bv(context_, children_[0]->toZ3Expr(verbose), Z3_mk_fpa_sort(context_, 8, 24)));
     Z3_ast sort;
     Z3_inc_ref(context_, sort);
     sort = Z3_mk_fpa_to_fp_bv(context_, children_[0]->toZ3Expr(verbose), Z3_mk_fpa_sort(context_, 8, 24));
     z3::expr res = to_expr(context_, sort);
     Z3_dec_ref(context_, sort);   
     return res; 
+    */
+    Z3_sort sort = Z3_mk_fpa_sort(context_, 8, 24);
+    Z3_inc_ref(context_, (Z3_ast)sort);
+    Z3_ast rm = Z3_mk_fpa_rtz(context_);
+    Z3_inc_ref(context_, rm);
+    z3::expr result = to_expr(context_, Z3_mk_fpa_to_fp_signed(context_, rm, children_[0]->toZ3Expr(verbose), sort));
+    Z3_dec_ref(context_, rm);
+    Z3_dec_ref(context_, (Z3_ast)sort);
+    return result;
   }
 };
 
@@ -980,17 +990,33 @@ protected:
   }
 
   z3::expr toZ3ExprRecursively(bool verbose) override {
+    printf("1\n");
     Z3_sort bv_sort = Z3_mk_bv_sort(context_, 32);
+    /*
     Z3_ast unordered = Z3_mk_numeral(context_, "2", bv_sort);
     Z3_ast maggiore = Z3_mk_numeral(context_, "1", bv_sort);
     Z3_ast uguale = Z3_mk_numeral(context_, "0", bv_sort);
     Z3_ast minore = Z3_mk_numeral(context_, "-1", bv_sort);
+    */
+    printf("2\n");
+    Z3_ast unordered = Z3_mk_numeral(context_, "69", bv_sort);
+    printf("3\n");
+    Z3_ast maggiore = Z3_mk_numeral(context_, "0", bv_sort);
+    printf("4\n");
+    Z3_ast uguale = Z3_mk_numeral(context_, "64", bv_sort);
+    printf("5\n");
+    Z3_ast minore = Z3_mk_numeral(context_, "1", bv_sort);
+    printf("6\n");
     Z3_ast livello_3 = Z3_mk_ite(context_, Z3_mk_fpa_lt(context_, children_[0]->toZ3Expr(verbose), children_[1]->toZ3Expr(verbose)), minore, unordered);
-    Z3_ast livello_2 = Z3_mk_ite(context_, Z3_mk_fpa_gt(context_, children_[0]->toZ3Expr(verbose), children_[1]->toZ3Expr(verbose)), maggiore, uguale);
-    Z3_ast livello_1 = Z3_mk_ite(context_, Z3_mk_fpa_geq(context_, children_[0]->toZ3Expr(verbose), children_[1]->toZ3Expr(verbose)), livello_2, livello_3);
-    z3::expr res = to_expr(context_, livello_1);
+    printf("7\n");
+    //Z3_ast livello_2 = Z3_mk_ite(context_, Z3_mk_fpa_gt(context_, children_[0]->toZ3Expr(verbose), children_[1]->toZ3Expr(verbose)), maggiore, uguale);
+    printf("8\n");
+    //Z3_ast livello_1 = Z3_mk_ite(context_, Z3_mk_fpa_geq(context_, children_[0]->toZ3Expr(verbose), children_[1]->toZ3Expr(verbose)), livello_2, livello_3);
+    printf("9\n");
+    //z3::expr res = to_expr(context_, livello_1);
+    printf("10\n");
   
-    return res;
+    //return res;
   }
 };
 /********************/
