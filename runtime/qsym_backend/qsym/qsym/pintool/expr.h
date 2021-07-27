@@ -944,9 +944,9 @@ protected:
 
   z3::expr toZ3ExprRecursively(bool verbose) override {
     printf("\n----- Start AddssExpr -----\n");
+    Z3_ast_print_mode(Z3_PRINT_LOW_LEVEL);
     printf("children_[0] -> %s\n", Z3_ast_to_string(context_, children_[0]->toZ3Expr(verbose)));
     printf("children_[1] -> %s\n\n", Z3_ast_to_string(context_, children_[1]->toZ3Expr(verbose)));
-    //printf("res -> %s\n", Z3_ast_to_string(context_, res));
     printf("----- End AddssExpr -----\n\n");
     return children_[0]->toZ3Expr(verbose) + children_[1]->toZ3Expr(verbose);
   }
@@ -964,6 +964,7 @@ protected:
 
   z3::expr toZ3ExprRecursively(bool verbose) override {
     printf("\n----- Start Cvtsi2ssExpr -----\n");
+    Z3_set_ast_print_mode(context_, Z3_ast_print_mode(Z3_PRINT_LOW_LEVEL));
     Z3_sort sort = Z3_mk_fpa_sort(context_, 8, 24);
     Z3_inc_ref(context_, (Z3_ast)sort);
     Z3_ast rm = Z3_mk_fpa_rtz(context_);
@@ -990,6 +991,7 @@ protected:
 
   z3::expr toZ3ExprRecursively(bool verbose) override {
     printf("\n----- Start ComissExpr -----\n");
+    Z3_ast_print_mode(Z3_PRINT_LOW_LEVEL);
     Z3_sort bv_sort = Z3_mk_bv_sort(context_, 32);              Z3_inc_ref(context_, Z3_ast(bv_sort));
     Z3_ast unordered = Z3_mk_numeral(context_, "69", bv_sort);  Z3_inc_ref(context_, unordered);
     Z3_ast maggiore = Z3_mk_numeral(context_, "0", bv_sort);    Z3_inc_ref(context_, maggiore);
