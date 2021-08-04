@@ -234,6 +234,9 @@ DEF_BINARY_EXPR_BUILDER(signed_rem, SRem)
 
 /**** CODICE MIO ****/
 DEF_BINARY_EXPR_BUILDER(addss, Addss)
+DEF_BINARY_EXPR_BUILDER(subss, Subss)
+DEF_BINARY_EXPR_BUILDER(mulss, Mulss)
+DEF_BINARY_EXPR_BUILDER(divss, Divss)
 DEF_BINARY_EXPR_BUILDER(comiss, Comiss)
 /********************/
 
@@ -268,12 +271,10 @@ SymExpr _sym_build_neg(SymExpr expr) {
 
 /**** CODICE MIO ****/
 SymExpr _sym_build_cvtsi2ss(SymExpr expr){
-  //printf("sono in runtimecpp per cvtsi2ss\n");
   return registerExpression(g_expr_builder->createCvtsi2ss(allocatedExpressions.at(expr)));
 }
 
 SymExpr _sym_build_floating_point(double value, int bits){
-  //printf("creo una costante fp\n");
   return registerExpression(g_expr_builder->createFPConstant(value, bits));
 }
 /********************/

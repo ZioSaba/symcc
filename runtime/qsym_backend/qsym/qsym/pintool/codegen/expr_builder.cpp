@@ -704,6 +704,21 @@ ExprRef SymbolicExprBuilder::createAddss(ExprRef l, ExprRef r) {
   return ExprBuilder::createAddss(l, r);
 }
 
+ExprRef SymbolicExprBuilder::createSubss(ExprRef l, ExprRef r) {
+  //printf("sono in createSubss di expr_builder.cpp\n");
+  return ExprBuilder::createSubss(l, r);
+}
+
+ExprRef SymbolicExprBuilder::createMulss(ExprRef l, ExprRef r) {
+  //printf("sono in createMulss di expr_builder.cpp\n");
+  return ExprBuilder::createMulss(l, r);
+}
+
+ExprRef SymbolicExprBuilder::createDivss(ExprRef l, ExprRef r) {
+  //printf("sono in createDivss di expr_builder.cpp\n");
+  return ExprBuilder::createDivss(l, r);
+}
+
 ExprRef SymbolicExprBuilder::createCvtsi2ss(ExprRef e) {
   //printf("sono in createCvtsi2ss di expr_builder.cpp\n");
   return ExprBuilder::createCvtsi2ss(e);

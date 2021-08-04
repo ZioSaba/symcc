@@ -704,6 +704,21 @@ ExprRef SymbolicExprBuilder::createAddss(ExprRef l, ExprRef r) {
   return ExprBuilder::createAddss(l, r);
 }
 
+ExprRef SymbolicExprBuilder::createSubss(ExprRef l, ExprRef r) {
+  //printf("sono in createSubss di expr_builder.cpp\n");
+  return ExprBuilder::createSubss(l, r);
+}
+
+ExprRef SymbolicExprBuilder::createMulss(ExprRef l, ExprRef r) {
+  //printf("sono in createMulss di expr_builder.cpp\n");
+  return ExprBuilder::createMulss(l, r);
+}
+
+ExprRef SymbolicExprBuilder::createDivss(ExprRef l, ExprRef r) {
+  //printf("sono in createDivss di expr_builder.cpp\n");
+  return ExprBuilder::createDivss(l, r);
+}
+
 ExprRef SymbolicExprBuilder::createCvtsi2ss(ExprRef e) {
   //printf("sono in createCvtsi2ss di expr_builder.cpp\n");
   return ExprBuilder::createCvtsi2ss(e);
@@ -1223,6 +1238,24 @@ ExprRef ExprBuilder::createAddss(ExprRef l, ExprRef r)
 	return next_->createAddss(l, r);
 }
 
+ExprRef ExprBuilder::createSubss(ExprRef l, ExprRef r)
+{
+//	printf("createSubss");
+	return next_->createSubss(l, r);
+}
+
+ExprRef ExprBuilder::createMulss(ExprRef l, ExprRef r)
+{
+//	printf("createMulss");
+	return next_->createMulss(l, r);
+}
+
+ExprRef ExprBuilder::createDivss(ExprRef l, ExprRef r)
+{
+//	printf("createDivss");
+	return next_->createDivss(l, r);
+}
+
 ExprRef ExprBuilder::createComiss(ExprRef l, ExprRef r)
 {
 //	printf("createComiss");
@@ -1458,6 +1491,12 @@ ExprRef ExprBuilder::createBinaryExpr(Kind kind, ExprRef l, ExprRef r) {
 			return createLAnd(l, r);
 		case Addss:
 			return createAddss(l, r);
+		case Subss:
+			return createSubss(l, r);
+		case Mulss:
+			return createMulss(l, r);
+		case Divss:
+			return createDivss(l, r);
 		default:
 			LOG_FATAL("Non-binary expr: " + std::to_string(kind) + "\n");
 			return NULL;
@@ -1529,6 +1568,24 @@ ExprRef BaseExprBuilder::createAdd(ExprRef l, ExprRef r) {
 
 ExprRef BaseExprBuilder::createAddss(ExprRef l, ExprRef r) {
 	ExprRef ref = std::make_shared<AddssExpr>(l, r);
+	addUses(ref);
+	return ref;
+}
+
+ExprRef BaseExprBuilder::createSubss(ExprRef l, ExprRef r) {
+	ExprRef ref = std::make_shared<SubssExpr>(l, r);
+	addUses(ref);
+	return ref;
+}
+
+ExprRef BaseExprBuilder::createMulss(ExprRef l, ExprRef r) {
+	ExprRef ref = std::make_shared<MulssExpr>(l, r);
+	addUses(ref);
+	return ref;
+}
+
+ExprRef BaseExprBuilder::createDivss(ExprRef l, ExprRef r) {
+	ExprRef ref = std::make_shared<DivssExpr>(l, r);
 	addUses(ref);
 	return ref;
 }

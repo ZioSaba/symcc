@@ -41,13 +41,10 @@ if __name__ == '__main__':
 \treturn next_->{1}({2});
 }}\n\n""".format(func, name, ', '.join(args_name)))
 
-    #CODICE MIO
-    #Aggiunto Addss in BINARY_KIND
-
     BINARY_KIND = [
     "Add", "Sub", "Mul", "UDiv", "SDiv", "URem", "SRem", "And", "Or", "Xor",
     "Shl", "LShr", "AShr", "Equal", "Distinct", "Ult", "Ule", "Ugt", "Uge",
-    "Slt", "Sle", "Sgt", "Sge", "LOr", "LAnd", "Addss"]
+    "Slt", "Sle", "Sgt", "Sge", "LOr", "LAnd", "Addss", "Subss", "Mulss", "Divss"]
 
     # generate createBinary
     code.append(
