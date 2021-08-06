@@ -946,10 +946,10 @@ protected:
   }
 
   z3::expr toZ3ExprRecursively(bool verbose) override {
-    printf("\n----- Start AddssExpr -----\n");
-    printf("children_[0] -> %s\n", Z3_ast_to_string(context_, children_[0]->toZ3Expr(verbose)));
-    printf("children_[1] -> %s\n\n", Z3_ast_to_string(context_, children_[1]->toZ3Expr(verbose)));
-    printf("----- End AddssExpr -----\n\n");
+    //printf("\n----- Start AddssExpr -----\n");
+    //printf("children_[0] -> %s\n", Z3_ast_to_string(context_, children_[0]->toZ3Expr(verbose)));
+    //printf("children_[1] -> %s\n\n", Z3_ast_to_string(context_, children_[1]->toZ3Expr(verbose)));
+    //printf("----- End AddssExpr -----\n\n");
     return children_[0]->toZ3Expr(verbose) + children_[1]->toZ3Expr(verbose);
   }
 };
@@ -965,10 +965,10 @@ protected:
   }
 
   z3::expr toZ3ExprRecursively(bool verbose) override {
-    printf("\n----- Start SubssExpr -----\n");
-    printf("children_[0] -> %s\n", Z3_ast_to_string(context_, children_[0]->toZ3Expr(verbose)));
-    printf("children_[1] -> %s\n\n", Z3_ast_to_string(context_, children_[1]->toZ3Expr(verbose)));
-    printf("----- End SubssExpr -----\n\n");
+    //printf("\n----- Start SubssExpr -----\n");
+    //printf("children_[0] -> %s\n", Z3_ast_to_string(context_, children_[0]->toZ3Expr(verbose)));
+    //printf("children_[1] -> %s\n\n", Z3_ast_to_string(context_, children_[1]->toZ3Expr(verbose)));
+    //printf("----- End SubssExpr -----\n\n");
     return children_[0]->toZ3Expr(verbose) - children_[1]->toZ3Expr(verbose);
   }
 };
@@ -984,10 +984,10 @@ protected:
   }
 
   z3::expr toZ3ExprRecursively(bool verbose) override {
-    printf("\n----- Start MulssExpr -----\n");
-    printf("children_[0] -> %s\n", Z3_ast_to_string(context_, children_[0]->toZ3Expr(verbose)));
-    printf("children_[1] -> %s\n\n", Z3_ast_to_string(context_, children_[1]->toZ3Expr(verbose)));
-    printf("----- End MulssExpr -----\n\n");
+    //printf("\n----- Start MulssExpr -----\n");
+    //printf("children_[0] -> %s\n", Z3_ast_to_string(context_, children_[0]->toZ3Expr(verbose)));
+    //printf("children_[1] -> %s\n\n", Z3_ast_to_string(context_, children_[1]->toZ3Expr(verbose)));
+    //printf("----- End MulssExpr -----\n\n");
     return children_[0]->toZ3Expr(verbose) * children_[1]->toZ3Expr(verbose);
   }
 };
@@ -1003,10 +1003,10 @@ protected:
   }
 
   z3::expr toZ3ExprRecursively(bool verbose) override {
-    printf("\n----- Start DivssExpr -----\n");
-    printf("children_[0] -> %s\n", Z3_ast_to_string(context_, children_[0]->toZ3Expr(verbose)));
-    printf("children_[1] -> %s\n\n", Z3_ast_to_string(context_, children_[1]->toZ3Expr(verbose)));
-    printf("----- End DivssExpr -----\n\n");
+    //printf("\n----- Start DivssExpr -----\n");
+    //printf("children_[0] -> %s\n", Z3_ast_to_string(context_, children_[0]->toZ3Expr(verbose)));
+    //printf("children_[1] -> %s\n\n", Z3_ast_to_string(context_, children_[1]->toZ3Expr(verbose)));
+    //printf("----- End DivssExpr -----\n\n");
     return children_[0]->toZ3Expr(verbose) / children_[1]->toZ3Expr(verbose);
   }
 };
@@ -1022,18 +1022,18 @@ protected:
   }
 
   z3::expr toZ3ExprRecursively(bool verbose) override {
-    printf("\n----- Start Cvtsi2ssExpr -----\n");
-    Z3_set_ast_print_mode(context_, Z3_ast_print_mode(Z3_PRINT_LOW_LEVEL));
+    //printf("\n----- Start Cvtsi2ssExpr -----\n");
+    //Z3_set_ast_print_mode(context_, Z3_ast_print_mode(Z3_PRINT_LOW_LEVEL));
     Z3_sort sort = Z3_mk_fpa_sort(context_, 8, 24);
     Z3_inc_ref(context_, (Z3_ast)sort);
     Z3_ast rm = Z3_mk_fpa_rtz(context_);
     Z3_inc_ref(context_, rm);
-    printf("children_[0] -> %s\n\n", Z3_ast_to_string(context_, children_[0]->toZ3Expr(verbose)));
+    //printf("children_[0] -> %s\n\n", Z3_ast_to_string(context_, children_[0]->toZ3Expr(verbose)));
     z3::expr result = to_expr(context_, Z3_mk_fpa_to_fp_signed(context_, rm, children_[0]->toZ3Expr(verbose), sort));
     Z3_dec_ref(context_, rm);
     Z3_dec_ref(context_, (Z3_ast)sort);
-    printf("res -> %s\n", Z3_ast_to_string(context_, result));
-    printf("----- End Cvtsi2ssExpr -----\n\n");
+    //printf("res -> %s\n", Z3_ast_to_string(context_, result));
+    //printf("----- End Cvtsi2ssExpr -----\n\n");
     return result;
   }
 };
@@ -1049,16 +1049,15 @@ protected:
   }
 
   z3::expr toZ3ExprRecursively(bool verbose) override {
-    printf("\n----- Start ComissExpr -----\n");
-    Z3_ast_print_mode(Z3_PRINT_LOW_LEVEL);
+    //printf("\n----- Start ComissExpr -----\n");
     Z3_sort bv_sort = Z3_mk_bv_sort(context_, 32);              Z3_inc_ref(context_, Z3_ast(bv_sort));
     Z3_ast unordered = Z3_mk_numeral(context_, "69", bv_sort);  Z3_inc_ref(context_, unordered);
     Z3_ast maggiore = Z3_mk_numeral(context_, "0", bv_sort);    Z3_inc_ref(context_, maggiore);
     Z3_ast uguale = Z3_mk_numeral(context_, "64", bv_sort);     Z3_inc_ref(context_, uguale);
     Z3_ast minore = Z3_mk_numeral(context_, "1", bv_sort);      Z3_inc_ref(context_, minore);
 
-    printf("children_[0] -> %s\n", Z3_ast_to_string(context_, children_[0]->toZ3Expr(verbose)));
-    printf("children_[1] -> %s\n\n", Z3_ast_to_string(context_, children_[1]->toZ3Expr(verbose)));
+    //printf("children_[0] -> %s\n", Z3_ast_to_string(context_, children_[0]->toZ3Expr(verbose)));
+    //printf("children_[1] -> %s\n\n", Z3_ast_to_string(context_, children_[1]->toZ3Expr(verbose)));
 
     Z3_ast livello_3 = Z3_mk_ite(context_, Z3_mk_fpa_lt(context_, children_[0]->toZ3Expr(verbose), children_[1]->toZ3Expr(verbose)), minore, unordered);    
     Z3_inc_ref(context_, livello_3);
@@ -1067,7 +1066,7 @@ protected:
     Z3_ast livello_1 = Z3_mk_ite(context_, Z3_mk_fpa_geq(context_, children_[0]->toZ3Expr(verbose), children_[1]->toZ3Expr(verbose)), livello_2, livello_3);
     Z3_inc_ref(context_, livello_1);
     z3::expr res = to_expr(context_, livello_1);
-    printf("res -> %s\n", Z3_ast_to_string(context_, res));
+    //printf("res -> %s\n", Z3_ast_to_string(context_, res));
     Z3_dec_ref(context_, Z3_ast(bv_sort));
     Z3_dec_ref(context_, unordered);
     Z3_dec_ref(context_, maggiore);
@@ -1076,7 +1075,7 @@ protected:
     Z3_dec_ref(context_, livello_3);
     Z3_dec_ref(context_, livello_2);
     Z3_dec_ref(context_, livello_1);
-    printf("----- End ComissExpr -----\n\n");
+    //printf("----- End ComissExpr -----\n\n");
     return res;
   }
 };
